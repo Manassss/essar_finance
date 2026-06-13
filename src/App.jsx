@@ -6,15 +6,15 @@ const translations = {
     langShort: 'EN',
     nav: { home: 'Home', about: 'About Us', services: 'Services', contact: 'Contact', apply: 'Apply Now' },
     pageTitles: {
-      home: 'Essar Finex Pvt. Ltd. | Property, Vehicle, Security & Personal Loans',
-      about: 'About Essar Finex Pvt. Ltd.',
-      services: 'Financial Services | Essar Finex Pvt. Ltd.',
-      contact: 'Contact Essar Finex Pvt. Ltd.'
+      home: 'ESS AAR FINEX PVT LTD | Property, Vehicle, Security & Personal Loans',
+      about: 'About ESS AAR FINEX PVT LTD',
+      services: 'Financial Services | ESS AAR FINEX PVT LTD',
+      contact: 'Contact ESS AAR FINEX PVT LTD'
     },
     hero: {
       eyebrow: 'Secured and personal funding',
       title: 'Borrow with clarity before you commit.',
-      text: 'Essar Finex Pvt. Ltd. helps applicants prepare the right file for mortgage of property, short term loans, security-backed loans, vehicle loans, project funding, and personal loans.',
+      text: 'ESS AAR FINEX PVT LTD helps applicants prepare the right file for mortgage of property, short term loans, security-backed loans, vehicle loans, project funding, and personal loans.',
       badges: ['PAN & Aadhaar based KYC', 'Bank statement and income review', 'Asset documents where applicable'],
       apply: 'Apply Now',
       eligibility: 'Check Eligibility',
@@ -141,7 +141,7 @@ const translations = {
       eyebrow: 'FAQs',
       title: 'Questions borrowers usually ask first.',
       items: [
-        { q: 'What loan services does Essar Finex Pvt. Ltd. provide?', a: 'We provide mortgage of property, short term loan, security loan including shares and stock, vehicle loan, project funding, and personal loan solutions.' },
+        { q: 'What loan services does ESS AAR FINEX PVT LTD provide?', a: 'We provide mortgage of property, short term loan, security loan including shares and stock, vehicle loan, project funding, and personal loan solutions.' },
         { q: 'What is the basic age eligibility?', a: 'Applicants should generally be between 21 and 60 years of age and must meet income, KYC, and bank account requirements.' },
         { q: 'Are documents different for every loan type?', a: 'Basic KYC and bank statements are required for most applications. Property, vehicle, or security-related documents are required where the loan is backed by those assets.' },
         { q: 'How quickly can the loan be disbursed?', a: 'Disbursal timelines depend on eligibility, document completion, verification, and approval terms.' }
@@ -156,9 +156,9 @@ const translations = {
     about: {
       eyebrow: 'About us',
       title: 'A finance partner for borrowers who value clarity and proper documentation.',
-      text: 'Essar Finex Pvt. Ltd. focuses on responsible assessment, practical file preparation, and support across secured and unsecured lending needs.',
+      text: 'ESS AAR FINEX PVT LTD focuses on responsible assessment, practical file preparation, and support across secured and unsecured lending needs.',
       cards: [
-        ['Company Overview', 'Essar Finex Pvt. Ltd. serves borrowers who need structured lending support for property mortgage, short term funding, security-backed loans, vehicle finance, project funding, and personal loan requirements.'],
+        ['Company Overview', 'ESS AAR FINEX PVT LTD serves borrowers who need structured lending support for property mortgage, short term funding, security-backed loans, vehicle finance, project funding, and personal loan requirements.'],
         ['Trust & Compliance', 'Every loan request is reviewed through KYC, income, bank account, and relevant asset documentation. Approval and disbursal remain subject to verification, eligibility, and internal policy.'],
         ['Vision', 'To become a trusted lending partner by making document requirements, eligibility discussion, and offer terms easier to understand.'],
         ['Mission', 'To deliver responsible lending support with professional service, transparent document requirements, and timely coordination from enquiry to disbursal.']
@@ -171,11 +171,11 @@ const translations = {
     },
     contact: {
       eyebrow: 'Contact',
-      title: 'Book a consultation with Essar Finex Pvt. Ltd.',
+      title: 'Book a consultation with ESS AAR FINEX PVT LTD',
       text: 'Send your details and our team will connect with you for eligibility guidance, documentation support, and next steps.',
       details: [
         ['Registered Office Address', 'Registered office address placeholder'],
-        ['Customer Support Email', 'support@essarfinex.example'],
+        ['Customer Support Email', 'support@essaarfinex.example'],
         ['Customer Care Number', '+91 XXXXX XXXXX'],
         ['Working Hours', 'Monday to Saturday, 10:00 AM to 6:00 PM']
       ],
@@ -205,7 +205,7 @@ const translations = {
       services: 'Services',
       compliance: 'Compliance Note',
       complianceText: 'Loan approval is subject to eligibility, document verification, internal assessment, and applicable terms.',
-      rights: '© 2026 Essar Finex Pvt. Ltd. All rights reserved.'
+      rights: '© 2026 ESS AAR FINEX PVT LTD All rights reserved.'
     }
   },
   hi: {
@@ -213,15 +213,15 @@ const translations = {
     langShort: 'HI',
     nav: { home: 'होम', about: 'हमारे बारे में', services: 'सेवाएं', contact: 'संपर्क', apply: 'अभी आवेदन करें' },
     pageTitles: {
-      home: 'Essar Finex Pvt. Ltd. | संपत्ति, वाहन, सिक्योरिटी और पर्सनल लोन',
-      about: 'Essar Finex Pvt. Ltd. के बारे में',
-      services: 'वित्तीय सेवाएं | Essar Finex Pvt. Ltd.',
-      contact: 'Essar Finex Pvt. Ltd. से संपर्क करें'
+      home: 'ESS AAR FINEX PVT LTD | संपत्ति, वाहन, सिक्योरिटी और पर्सनल लोन',
+      about: 'ESS AAR FINEX PVT LTD के बारे में',
+      services: 'वित्तीय सेवाएं | ESS AAR FINEX PVT LTD',
+      contact: 'ESS AAR FINEX PVT LTD से संपर्क करें'
     },
     hero: {
       eyebrow: 'सिक्योर्ड और पर्सनल फंडिंग',
       title: 'प्रतिबद्ध होने से पहले स्पष्टता के साथ उधार लें।',
-      text: 'Essar Finex Pvt. Ltd. आवेदकों को Mortgage of Property, Short Term Loan, Security Loan, Vehicle Loan, Project Funding और Personal Loan के लिए सही दस्तावेज तैयार करने में सहायता करता है।',
+      text: 'ESS AAR FINEX PVT LTD आवेदकों को Mortgage of Property, Short Term Loan, Security Loan, Vehicle Loan, Project Funding और Personal Loan के लिए सही दस्तावेज तैयार करने में सहायता करता है।',
       badges: ['PAN और Aadhaar आधारित KYC', 'बैंक स्टेटमेंट और आय की समीक्षा', 'जहां लागू हो वहां एसेट दस्तावेज'],
       apply: 'अभी आवेदन करें',
       eligibility: 'योग्यता जांचें',
@@ -348,7 +348,7 @@ const translations = {
       eyebrow: 'FAQs',
       title: 'Borrowers सबसे पहले ये सवाल पूछते हैं।',
       items: [
-        { q: 'Essar Finex Pvt. Ltd. कौन-कौन सी loan services देता है?', a: 'हम mortgage of property, short term loan, shares और stock सहित security loan, vehicle loan, project funding और personal loan solutions provide करते हैं।' },
+        { q: 'ESS AAR FINEX PVT LTD कौन-कौन सी loan services देता है?', a: 'हम mortgage of property, short term loan, shares और stock सहित security loan, vehicle loan, project funding और personal loan solutions provide करते हैं।' },
         { q: 'Basic age eligibility क्या है?', a: 'Applicants की age सामान्यतः 21 से 60 years के बीच होनी चाहिए और income, KYC तथा bank account requirements पूरी होनी चाहिए।' },
         { q: 'क्या हर loan type के documents अलग होते हैं?', a: 'Most applications में basic KYC और bank statements required होते हैं। Property, vehicle या security-backed loan में related asset documents required होते हैं।' },
         { q: 'Loan disbursal कितनी जल्दी हो सकता है?', a: 'Disbursal timeline eligibility, document completion, verification और approval terms पर निर्भर करती है।' }
@@ -363,9 +363,9 @@ const translations = {
     about: {
       eyebrow: 'हमारे बारे में',
       title: 'Clear terms और proper documentation को महत्व देने वाले borrowers के लिए finance partner.',
-      text: 'Essar Finex Pvt. Ltd. responsible assessment, practical file preparation और secured तथा unsecured lending needs में support पर focus करता है।',
+      text: 'ESS AAR FINEX PVT LTD responsible assessment, practical file preparation और secured तथा unsecured lending needs में support पर focus करता है।',
       cards: [
-        ['Company Overview', 'Essar Finex Pvt. Ltd. property mortgage, short term funding, security-backed loans, vehicle finance, project funding और personal loan requirements के लिए structured lending support देता है।'],
+        ['Company Overview', 'ESS AAR FINEX PVT LTD property mortgage, short term funding, security-backed loans, vehicle finance, project funding और personal loan requirements के लिए structured lending support देता है।'],
         ['Trust & Compliance', 'हर loan request KYC, income, bank account और relevant asset documentation के आधार पर review होती है। Approval और disbursal verification, eligibility और internal policy पर निर्भर रहते हैं।'],
         ['Vision', 'Document requirements, eligibility discussion और offer terms को आसान बनाकर trusted lending partner बनना।'],
         ['Mission', 'Professional service, transparent document requirements और enquiry से disbursal तक timely coordination के साथ responsible lending support देना।']
@@ -378,11 +378,11 @@ const translations = {
     },
     contact: {
       eyebrow: 'संपर्क',
-      title: 'Essar Finex Pvt. Ltd. के साथ consultation book करें।',
+      title: 'ESS AAR FINEX PVT LTD के साथ consultation book करें।',
       text: 'अपनी details भेजें और हमारी team eligibility guidance, documentation support और next steps के लिए आपसे connect करेगी।',
       details: [
         ['Registered Office Address', 'Registered office address placeholder'],
-        ['Customer Support Email', 'support@essarfinex.example'],
+        ['Customer Support Email', 'support@essaarfinex.example'],
         ['Customer Care Number', '+91 XXXXX XXXXX'],
         ['Working Hours', 'Monday to Saturday, 10:00 AM to 6:00 PM']
       ],
@@ -412,7 +412,7 @@ const translations = {
       services: 'Services',
       compliance: 'Compliance Note',
       complianceText: 'Loan approval eligibility, document verification, internal assessment और applicable terms पर निर्भर है।',
-      rights: '© 2026 Essar Finex Pvt. Ltd. All rights reserved.'
+      rights: '© 2026 ESS AAR FINEX PVT LTD All rights reserved.'
     }
   }
 };
@@ -508,8 +508,8 @@ function Header({ page, goTo, menuOpen, setMenuOpen, lang, setLang, t }) {
       <a className="brand" href="#home" onClick={(event) => { event.preventDefault(); goTo('home'); }}>
         <span className="brand-mark">EF</span>
         <span>
-          <strong>Essar Finex</strong>
-          <small>Pvt. Ltd.</small>
+          <strong>ESS AAR FINEX</strong>
+          <small>PVT LTD</small>
         </span>
       </a>
       <button
@@ -993,8 +993,8 @@ function Footer({ goTo, t }) {
           <a className="brand" href="#home" onClick={(event) => { event.preventDefault(); goTo('home'); }}>
             <span className="brand-mark">EF</span>
             <span>
-              <strong>Essar Finex</strong>
-              <small>Pvt. Ltd.</small>
+              <strong>ESS AAR FINEX</strong>
+              <small>PVT LTD</small>
             </span>
           </a>
           <p>{t.footer.text}</p>
