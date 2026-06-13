@@ -1,119 +1,421 @@
 import { useEffect, useMemo, useState } from 'react';
 
-const services = [
-  {
-    icon: 'MP',
-    title: 'Mortgage of Property',
-    text: 'Raise funds against eligible residential, commercial, or industrial property through a structured collateral review.',
-    bestFor: 'Business expansion, working capital, major obligations, or planned capital needs.',
-    points: ['Eligible property-backed funding', 'Clear collateral discussion', 'Document-led assessment']
+const translations = {
+  en: {
+    langName: 'English',
+    langShort: 'EN',
+    nav: { home: 'Home', about: 'About Us', services: 'Services', contact: 'Contact', apply: 'Apply Now' },
+    pageTitles: {
+      home: 'Essar Finex Pvt. Ltd. | Property, Vehicle, Security & Personal Loans',
+      about: 'About Essar Finex Pvt. Ltd.',
+      services: 'Financial Services | Essar Finex Pvt. Ltd.',
+      contact: 'Contact Essar Finex Pvt. Ltd.'
+    },
+    hero: {
+      eyebrow: 'Secured and personal funding',
+      title: 'Borrow with clarity before you commit.',
+      text: 'Essar Finex Pvt. Ltd. helps applicants prepare the right file for mortgage of property, short term loans, security-backed loans, vehicle loans, project funding, and personal loans.',
+      badges: ['PAN & Aadhaar based KYC', 'Bank statement and income review', 'Asset documents where applicable'],
+      apply: 'Apply Now',
+      eligibility: 'Check Eligibility',
+      calculator: {
+        top: 'Loan preview',
+        status: 'Indicative',
+        title: 'Plan your requirement',
+        amount: 'Required amount',
+        amountValue: (amount) => `Rs. ${amount} lakh`,
+        tenure: 'Preferred tenure',
+        tenureValue: (tenure) => `${tenure} months`,
+        benchmark: 'Planning benchmark',
+        month: 'month',
+        note: 'Final offer depends on eligibility, documents, collateral, and internal assessment.',
+        readiness: 'File readiness',
+        readinessText: 'KYC + income + documents aligned',
+        assisted: 'Assisted review',
+        human: 'Human-led',
+        humanText: 'Talk to a finance team before final submission'
+      }
+    },
+    trustBar: ['Transparent assessment', 'PAN and Aadhaar KYC', 'Asset-backed options', 'Clear document checklist'],
+    servicesSection: {
+      eyebrow: 'Services',
+      title: 'Six focused lending categories. No clutter, no confusing positioning.',
+      text: 'Each product starts with a purpose, a document checklist, and a realistic assessment path.',
+      action: 'View All Services',
+      tag: 'Loan category',
+      bestFor: 'Best for',
+      enquire: 'Enquire Now'
+    },
+    services: [
+      {
+        icon: 'MP',
+        title: 'Mortgage of Property',
+        text: 'Raise funds against eligible residential, commercial, or industrial property through a structured collateral review.',
+        bestFor: 'Business expansion, working capital, major obligations, or planned capital needs.',
+        points: ['Eligible property-backed funding', 'Clear collateral discussion', 'Document-led assessment']
+      },
+      {
+        icon: 'ST',
+        title: 'Short Term Loan',
+        text: 'Short-tenure funding for borrowers who need liquidity for immediate personal or business commitments.',
+        bestFor: 'Working capital gaps, urgent payments, inventory cycles, or time-bound commitments.',
+        points: ['Defined repayment terms', 'Bank statement review', 'Fast file movement after documents']
+      },
+      {
+        icon: 'SL',
+        title: 'Security Loan',
+        text: 'Borrow against eligible securities, including shares and stock, after valuation and internal assessment.',
+        bestFor: 'Customers who want liquidity while using eligible securities as collateral.',
+        points: ['Shares and stock considered', 'Security-backed structure', 'Transparent valuation review']
+      },
+      {
+        icon: 'VL',
+        title: 'Vehicle Loan',
+        text: 'Funding support for eligible personal, business, and commercial vehicle requirements.',
+        bestFor: 'Individual vehicle purchases, business vehicles, and commercial transport needs.',
+        points: ['New and eligible used vehicles', 'Vehicle document review', 'Personal and business use cases']
+      },
+      {
+        icon: 'PF',
+        title: 'Project Funding',
+        text: 'Funding review for viable projects with attention to business plans, cash flows, and security coverage.',
+        bestFor: 'Business growth, project execution, asset creation, and expansion requirements.',
+        points: ['Project feasibility review', 'Business plan assessment', 'Structured funding support']
+      },
+      {
+        icon: 'PL',
+        title: 'Personal Loan',
+        text: 'Loan assistance for salaried and self-employed applicants with stable income and valid KYC records.',
+        bestFor: 'Planned family needs, education expenses, medical needs, and personal commitments.',
+        points: ['Income-led eligibility', 'Straightforward application support', 'KYC and bank account checks']
+      }
+    ],
+    why: {
+      eyebrow: 'Why choose us',
+      title: 'A lending experience designed around trust, speed, and simplicity.',
+      text: 'The interface is polished, but the promise stays practical: prepare the right file, understand eligibility, and move with confidence.',
+      stats: [['6', 'Loan categories'], ['4', 'Step review flow'], ['12', 'Months statement option'], ['100', 'Document-led process']],
+      features: [
+        ['Clarity before submission', 'Understand the required KYC, bank statement, income, and asset documents before the file moves.'],
+        ['Human finance team', 'Discuss purpose, repayment comfort, security coverage, and next steps with a real team.'],
+        ['Responsible assessment', 'Eligibility, documents, collateral, and offer terms are reviewed before approval.'],
+        ['Premium support flow', 'A focused process for salaried professionals, business owners, entrepreneurs, and individuals.']
+      ]
+    },
+    process: {
+      eyebrow: 'Loan process',
+      title: 'A guided four-step journey from enquiry to disbursal.',
+      text: 'The process stays simple while still respecting verification, documentation, and responsible approval.',
+      steps: [
+        ['01', 'Apply Online', 'Share your requirement, amount range, city, and preferred loan category.'],
+        ['02', 'Verify Documents', 'KYC, bank statements, income proof, and applicable asset documents are reviewed.'],
+        ['03', 'Approval & Offer', 'Eligible applicants receive a clear offer with amount, tenure, and repayment terms.'],
+        ['04', 'Quick Disbursal', 'After acceptance and final checks, funds are processed as per approved terms.']
+      ]
+    },
+    criteria: {
+      eligibilityTitle: 'Eligibility Criteria',
+      documentsTitle: 'Documents Required',
+      eligibility: ['Applicant age must be 21-60 years', 'Indian citizen', 'Valid PAN and Aadhaar', 'Active bank account', 'Stable source of income'],
+      documents: ['PAN Card', 'Aadhaar Card', 'Bank Statement: 3 months / 6 months / 9 months / 12 months', 'Income Proof', 'Property / Vehicle / Security-related documents where applicable']
+    },
+    compliance: {
+      eyebrow: 'Trust & compliance',
+      title: 'Responsible review before commitment.',
+      text: 'Every file is reviewed for identity, income, banking history, and applicable collateral records. The goal is to make the approval path clear before the borrower accepts an offer.',
+      note: 'Loan amount, tenure, rate, and disbursal are subject to eligibility, documentation, credit assessment, and applicable internal policies.',
+      heading: 'Trust signals',
+      points: ['PAN and Aadhaar based KYC checks', 'Income and bank statement review', 'Asset documentation for secured products', 'Clear offer terms before disbursal']
+    },
+    testimonials: {
+      eyebrow: 'Testimonials',
+      title: 'Customers remember clear communication.',
+      text: 'The review cards below represent the kind of experience this website is designed to communicate.',
+      items: [
+        { name: 'Business Owner', location: 'Delhi NCR', text: 'The team explained the property and bank statement requirements before we submitted the file. That made the process easier to plan.', initials: 'BO' },
+        { name: 'Self-employed Professional', location: 'Jaipur', text: 'I understood what documents were needed, what would be verified, and what the next step would be. The discussion was practical.', initials: 'SP' },
+        { name: 'Vehicle Finance Customer', location: 'Mumbai', text: 'The communication was direct. I liked that the vehicle documents and eligibility points were explained step by step.', initials: 'VC' }
+      ]
+    },
+    faqs: {
+      eyebrow: 'FAQs',
+      title: 'Questions borrowers usually ask first.',
+      items: [
+        { q: 'What loan services does Essar Finex Pvt. Ltd. provide?', a: 'We provide mortgage of property, short term loan, security loan including shares and stock, vehicle loan, project funding, and personal loan solutions.' },
+        { q: 'What is the basic age eligibility?', a: 'Applicants should generally be between 21 and 60 years of age and must meet income, KYC, and bank account requirements.' },
+        { q: 'Are documents different for every loan type?', a: 'Basic KYC and bank statements are required for most applications. Property, vehicle, or security-related documents are required where the loan is backed by those assets.' },
+        { q: 'How quickly can the loan be disbursed?', a: 'Disbursal timelines depend on eligibility, document completion, verification, and approval terms.' }
+      ]
+    },
+    cta: {
+      eyebrow: 'Ready to apply?',
+      title: 'Share your requirement and get the document checklist first.',
+      text: 'Our team will review the loan category, basic eligibility, and documents needed for the next step.',
+      action: 'Contact Our Team'
+    },
+    about: {
+      eyebrow: 'About us',
+      title: 'A finance partner for borrowers who value clarity and proper documentation.',
+      text: 'Essar Finex Pvt. Ltd. focuses on responsible assessment, practical file preparation, and support across secured and unsecured lending needs.',
+      cards: [
+        ['Company Overview', 'Essar Finex Pvt. Ltd. serves borrowers who need structured lending support for property mortgage, short term funding, security-backed loans, vehicle finance, project funding, and personal loan requirements.'],
+        ['Trust & Compliance', 'Every loan request is reviewed through KYC, income, bank account, and relevant asset documentation. Approval and disbursal remain subject to verification, eligibility, and internal policy.'],
+        ['Vision', 'To become a trusted lending partner by making document requirements, eligibility discussion, and offer terms easier to understand.'],
+        ['Mission', 'To deliver responsible lending support with professional service, transparent document requirements, and timely coordination from enquiry to disbursal.']
+      ]
+    },
+    servicesPage: {
+      eyebrow: 'Services',
+      title: 'Loan products designed around security, purpose, and repayment comfort.',
+      text: 'Explore lending options for property-backed funding, short-term liquidity, eligible securities, vehicles, projects, and personal requirements.'
+    },
+    contact: {
+      eyebrow: 'Contact',
+      title: 'Book a consultation with Essar Finex Pvt. Ltd.',
+      text: 'Send your details and our team will connect with you for eligibility guidance, documentation support, and next steps.',
+      details: [
+        ['Registered Office Address', 'Registered office address placeholder'],
+        ['Customer Support Email', 'support@essarfinex.example'],
+        ['Customer Care Number', '+91 XXXXX XXXXX'],
+        ['Working Hours', 'Monday to Saturday, 10:00 AM to 6:00 PM']
+      ],
+      mapLabel: 'Office location',
+      mapValue: 'Map placeholder',
+      formTitle: 'Request a call back',
+      formText: 'Share the basics and our team will guide you on eligibility and documents.',
+      fields: {
+        name: 'Full Name',
+        namePlaceholder: 'Enter your full name',
+        phone: 'Mobile Number',
+        city: 'City',
+        cityPlaceholder: 'Your city',
+        requirement: 'Loan Requirement',
+        select: 'Select a service',
+        amount: 'Required Amount',
+        amountPlaceholder: 'Example: 5 lakh',
+        message: 'Message',
+        messagePlaceholder: 'Tell us your requirement',
+        submit: 'Submit Enquiry',
+        note: 'Submitting this form does not guarantee approval. Our team will contact you for verification and next steps.'
+      }
+    },
+    footer: {
+      text: 'Lending support for mortgage of property, short term loans, security loans, vehicle loans, project funding, and personal loans.',
+      links: 'Important Links',
+      services: 'Services',
+      compliance: 'Compliance Note',
+      complianceText: 'Loan approval is subject to eligibility, document verification, internal assessment, and applicable terms.',
+      rights: '© 2026 Essar Finex Pvt. Ltd. All rights reserved.'
+    }
   },
-  {
-    icon: 'ST',
-    title: 'Short Term Loan',
-    text: 'Short-tenure funding for borrowers who need liquidity for immediate personal or business commitments.',
-    bestFor: 'Working capital gaps, urgent payments, inventory cycles, or time-bound commitments.',
-    points: ['Defined repayment terms', 'Bank statement review', 'Fast file movement after documents']
-  },
-  {
-    icon: 'SL',
-    title: 'Security Loan',
-    text: 'Borrow against eligible securities, including shares and stock, after valuation and internal assessment.',
-    bestFor: 'Customers who want liquidity while using eligible securities as collateral.',
-    points: ['Shares and stock considered', 'Security-backed structure', 'Transparent valuation review']
-  },
-  {
-    icon: 'VL',
-    title: 'Vehicle Loan',
-    text: 'Funding support for eligible personal, business, and commercial vehicle requirements.',
-    bestFor: 'Individual vehicle purchases, business vehicles, and commercial transport needs.',
-    points: ['New and eligible used vehicles', 'Vehicle document review', 'Personal and business use cases']
-  },
-  {
-    icon: 'PF',
-    title: 'Project Funding',
-    text: 'Funding review for viable projects with attention to business plans, cash flows, and security coverage.',
-    bestFor: 'Business growth, project execution, asset creation, and expansion requirements.',
-    points: ['Project feasibility review', 'Business plan assessment', 'Structured funding support']
-  },
-  {
-    icon: 'PL',
-    title: 'Personal Loan',
-    text: 'Loan assistance for salaried and self-employed applicants with stable income and valid KYC records.',
-    bestFor: 'Planned family needs, education expenses, medical needs, and personal commitments.',
-    points: ['Income-led eligibility', 'Straightforward application support', 'KYC and bank account checks']
+  hi: {
+    langName: 'हिन्दी',
+    langShort: 'HI',
+    nav: { home: 'होम', about: 'हमारे बारे में', services: 'सेवाएं', contact: 'संपर्क', apply: 'अभी आवेदन करें' },
+    pageTitles: {
+      home: 'Essar Finex Pvt. Ltd. | संपत्ति, वाहन, सिक्योरिटी और पर्सनल लोन',
+      about: 'Essar Finex Pvt. Ltd. के बारे में',
+      services: 'वित्तीय सेवाएं | Essar Finex Pvt. Ltd.',
+      contact: 'Essar Finex Pvt. Ltd. से संपर्क करें'
+    },
+    hero: {
+      eyebrow: 'सिक्योर्ड और पर्सनल फंडिंग',
+      title: 'प्रतिबद्ध होने से पहले स्पष्टता के साथ उधार लें।',
+      text: 'Essar Finex Pvt. Ltd. आवेदकों को Mortgage of Property, Short Term Loan, Security Loan, Vehicle Loan, Project Funding और Personal Loan के लिए सही दस्तावेज तैयार करने में सहायता करता है।',
+      badges: ['PAN और Aadhaar आधारित KYC', 'बैंक स्टेटमेंट और आय की समीक्षा', 'जहां लागू हो वहां एसेट दस्तावेज'],
+      apply: 'अभी आवेदन करें',
+      eligibility: 'योग्यता जांचें',
+      calculator: {
+        top: 'लोन प्रीव्यू',
+        status: 'अनुमानित',
+        title: 'अपनी आवश्यकता प्लान करें',
+        amount: 'आवश्यक राशि',
+        amountValue: (amount) => `₹ ${amount} लाख`,
+        tenure: 'पसंदीदा अवधि',
+        tenureValue: (tenure) => `${tenure} महीने`,
+        benchmark: 'प्लानिंग बेंचमार्क',
+        month: 'माह',
+        note: 'अंतिम ऑफर योग्यता, दस्तावेज, collateral और आंतरिक मूल्यांकन पर निर्भर करता है।',
+        readiness: 'फाइल तैयारी',
+        readinessText: 'KYC + आय + दस्तावेज aligned',
+        assisted: 'सहायता प्राप्त समीक्षा',
+        human: 'मानवीय सहायता',
+        humanText: 'फाइनल सबमिशन से पहले finance team से बात करें'
+      }
+    },
+    trustBar: ['पारदर्शी मूल्यांकन', 'PAN और Aadhaar KYC', 'एसेट-बैक्ड विकल्प', 'स्पष्ट दस्तावेज चेकलिस्ट'],
+    servicesSection: {
+      eyebrow: 'सेवाएं',
+      title: 'छह केंद्रित lending categories. कोई भ्रम नहीं, स्पष्ट positioning.',
+      text: 'हर product उद्देश्य, दस्तावेज चेकलिस्ट और वास्तविक assessment path से शुरू होता है।',
+      action: 'सभी सेवाएं देखें',
+      tag: 'लोन कैटेगरी',
+      bestFor: 'उपयुक्त',
+      enquire: 'पूछताछ करें'
+    },
+    services: [
+      {
+        icon: 'MP',
+        title: 'Mortgage of Property',
+        text: 'योग्य residential, commercial या industrial property के against structured collateral review के माध्यम से funds raise करें।',
+        bestFor: 'Business expansion, working capital, बड़ी obligations या planned capital needs.',
+        points: ['Eligible property-backed funding', 'स्पष्ट collateral discussion', 'Document-led assessment']
+      },
+      {
+        icon: 'ST',
+        title: 'Short Term Loan',
+        text: 'Immediate personal या business commitments के लिए liquidity चाहने वाले borrowers के लिए short-tenure funding.',
+        bestFor: 'Working capital gaps, urgent payments, inventory cycles या time-bound commitments.',
+        points: ['Defined repayment terms', 'Bank statement review', 'Documents के बाद fast file movement']
+      },
+      {
+        icon: 'SL',
+        title: 'Security Loan',
+        text: 'Valuation और internal assessment के बाद eligible securities, shares और stock के against borrowing.',
+        bestFor: 'जो customer eligible securities को collateral की तरह use करके liquidity चाहते हैं।',
+        points: ['Shares और stock considered', 'Security-backed structure', 'Transparent valuation review']
+      },
+      {
+        icon: 'VL',
+        title: 'Vehicle Loan',
+        text: 'Eligible personal, business और commercial vehicle requirements के लिए funding support.',
+        bestFor: 'Individual vehicle purchase, business vehicle और commercial transport needs.',
+        points: ['New और eligible used vehicles', 'Vehicle document review', 'Personal और business use cases']
+      },
+      {
+        icon: 'PF',
+        title: 'Project Funding',
+        text: 'Business plans, cash flows और security coverage पर ध्यान देते हुए viable projects की funding review.',
+        bestFor: 'Business growth, project execution, asset creation और expansion requirements.',
+        points: ['Project feasibility review', 'Business plan assessment', 'Structured funding support']
+      },
+      {
+        icon: 'PL',
+        title: 'Personal Loan',
+        text: 'Stable income और valid KYC records वाले salaried और self-employed applicants के लिए loan assistance.',
+        bestFor: 'Planned family needs, education expenses, medical needs और personal commitments.',
+        points: ['Income-led eligibility', 'Straightforward application support', 'KYC और bank account checks']
+      }
+    ],
+    why: {
+      eyebrow: 'क्यों चुनें',
+      title: 'Trust, speed और simplicity पर आधारित lending experience.',
+      text: 'Design premium है, लेकिन promise practical है: सही file तैयार करें, eligibility समझें और confidence के साथ आगे बढ़ें।',
+      stats: [['6', 'Loan categories'], ['4', 'Step review flow'], ['12', 'Months statement option'], ['100', 'Document-led process']],
+      features: [
+        ['Submission से पहले clarity', 'File move होने से पहले KYC, bank statement, income और asset documents समझें।'],
+        ['Human finance team', 'Purpose, repayment comfort, security coverage और next steps real team के साथ discuss करें।'],
+        ['Responsible assessment', 'Approval से पहले eligibility, documents, collateral और offer terms review होते हैं।'],
+        ['Premium support flow', 'Salaried professionals, business owners, entrepreneurs और individuals के लिए focused process.']
+      ]
+    },
+    process: {
+      eyebrow: 'लोन प्रक्रिया',
+      title: 'Enquiry से disbursal तक guided four-step journey.',
+      text: 'Process simple रहता है, लेकिन verification, documentation और responsible approval का पूरा ध्यान रखा जाता है।',
+      steps: [
+        ['01', 'Online Apply करें', 'अपनी requirement, amount range, city और preferred loan category share करें।'],
+        ['02', 'Documents Verify करें', 'KYC, bank statements, income proof और applicable asset documents review होते हैं।'],
+        ['03', 'Approval & Offer', 'Eligible applicants को amount, tenure और repayment terms के साथ clear offer मिलता है।'],
+        ['04', 'Quick Disbursal', 'Acceptance और final checks के बाद funds approved terms के अनुसार process होते हैं।']
+      ]
+    },
+    criteria: {
+      eligibilityTitle: 'योग्यता मानदंड',
+      documentsTitle: 'आवश्यक दस्तावेज',
+      eligibility: ['Applicant age 21-60 years होनी चाहिए', 'Indian citizen', 'Valid PAN और Aadhaar', 'Active bank account', 'Stable source of income'],
+      documents: ['PAN Card', 'Aadhaar Card', 'Bank Statement: 3 months / 6 months / 9 months / 12 months', 'Income Proof', 'Property / Vehicle / Security-related documents जहां लागू हों']
+    },
+    compliance: {
+      eyebrow: 'Trust & compliance',
+      title: 'Commitment से पहले responsible review.',
+      text: 'हर file identity, income, banking history और applicable collateral records के आधार पर review होती है। उद्देश्य है कि borrower offer accept करने से पहले approval path स्पष्ट समझ सके।',
+      note: 'Loan amount, tenure, rate और disbursal eligibility, documentation, credit assessment और applicable internal policies पर निर्भर करते हैं।',
+      heading: 'Trust signals',
+      points: ['PAN और Aadhaar based KYC checks', 'Income और bank statement review', 'Secured products के लिए asset documentation', 'Disbursal से पहले clear offer terms']
+    },
+    testimonials: {
+      eyebrow: 'Testimonials',
+      title: 'Customers को clear communication याद रहता है।',
+      text: 'नीचे दिए गए review cards उसी तरह के experience को communicate करते हैं जिसके लिए यह website design की गई है।',
+      items: [
+        { name: 'Business Owner', location: 'Delhi NCR', text: 'File submit करने से पहले team ने property और bank statement requirements अच्छे से explain कीं। इससे planning आसान हुई।', initials: 'BO' },
+        { name: 'Self-employed Professional', location: 'Jaipur', text: 'मुझे समझ आया कि कौन से documents चाहिए, क्या verify होगा और next step क्या है। Discussion practical था।', initials: 'SP' },
+        { name: 'Vehicle Finance Customer', location: 'Mumbai', text: 'Communication direct था। Vehicle documents और eligibility points step by step explain किए गए।', initials: 'VC' }
+      ]
+    },
+    faqs: {
+      eyebrow: 'FAQs',
+      title: 'Borrowers सबसे पहले ये सवाल पूछते हैं।',
+      items: [
+        { q: 'Essar Finex Pvt. Ltd. कौन-कौन सी loan services देता है?', a: 'हम mortgage of property, short term loan, shares और stock सहित security loan, vehicle loan, project funding और personal loan solutions provide करते हैं।' },
+        { q: 'Basic age eligibility क्या है?', a: 'Applicants की age सामान्यतः 21 से 60 years के बीच होनी चाहिए और income, KYC तथा bank account requirements पूरी होनी चाहिए।' },
+        { q: 'क्या हर loan type के documents अलग होते हैं?', a: 'Most applications में basic KYC और bank statements required होते हैं। Property, vehicle या security-backed loan में related asset documents required होते हैं।' },
+        { q: 'Loan disbursal कितनी जल्दी हो सकता है?', a: 'Disbursal timeline eligibility, document completion, verification और approval terms पर निर्भर करती है।' }
+      ]
+    },
+    cta: {
+      eyebrow: 'Apply करने के लिए तैयार?',
+      title: 'अपनी requirement share करें और पहले document checklist पाएं।',
+      text: 'हमारी team loan category, basic eligibility और next step के लिए जरूरी documents review करेगी।',
+      action: 'Team से संपर्क करें'
+    },
+    about: {
+      eyebrow: 'हमारे बारे में',
+      title: 'Clear terms और proper documentation को महत्व देने वाले borrowers के लिए finance partner.',
+      text: 'Essar Finex Pvt. Ltd. responsible assessment, practical file preparation और secured तथा unsecured lending needs में support पर focus करता है।',
+      cards: [
+        ['Company Overview', 'Essar Finex Pvt. Ltd. property mortgage, short term funding, security-backed loans, vehicle finance, project funding और personal loan requirements के लिए structured lending support देता है।'],
+        ['Trust & Compliance', 'हर loan request KYC, income, bank account और relevant asset documentation के आधार पर review होती है। Approval और disbursal verification, eligibility और internal policy पर निर्भर रहते हैं।'],
+        ['Vision', 'Document requirements, eligibility discussion और offer terms को आसान बनाकर trusted lending partner बनना।'],
+        ['Mission', 'Professional service, transparent document requirements और enquiry से disbursal तक timely coordination के साथ responsible lending support देना।']
+      ]
+    },
+    servicesPage: {
+      eyebrow: 'सेवाएं',
+      title: 'Security, purpose और repayment comfort के आधार पर designed loan products.',
+      text: 'Property-backed funding, short-term liquidity, eligible securities, vehicles, projects और personal requirements के लिए lending options देखें।'
+    },
+    contact: {
+      eyebrow: 'संपर्क',
+      title: 'Essar Finex Pvt. Ltd. के साथ consultation book करें।',
+      text: 'अपनी details भेजें और हमारी team eligibility guidance, documentation support और next steps के लिए आपसे connect करेगी।',
+      details: [
+        ['Registered Office Address', 'Registered office address placeholder'],
+        ['Customer Support Email', 'support@essarfinex.example'],
+        ['Customer Care Number', '+91 XXXXX XXXXX'],
+        ['Working Hours', 'Monday to Saturday, 10:00 AM to 6:00 PM']
+      ],
+      mapLabel: 'Office location',
+      mapValue: 'Map placeholder',
+      formTitle: 'Call back request करें',
+      formText: 'Basic details share करें और हमारी team eligibility तथा documents पर guide करेगी।',
+      fields: {
+        name: 'Full Name',
+        namePlaceholder: 'अपना पूरा नाम दर्ज करें',
+        phone: 'Mobile Number',
+        city: 'City',
+        cityPlaceholder: 'आपका शहर',
+        requirement: 'Loan Requirement',
+        select: 'Service चुनें',
+        amount: 'Required Amount',
+        amountPlaceholder: 'Example: 5 lakh',
+        message: 'Message',
+        messagePlaceholder: 'अपनी requirement बताएं',
+        submit: 'Enquiry Submit करें',
+        note: 'Form submit करने से approval guarantee नहीं होता। Verification और next steps के लिए हमारी team आपसे contact करेगी।'
+      }
+    },
+    footer: {
+      text: 'Mortgage of property, short term loans, security loans, vehicle loans, project funding और personal loans के लिए lending support.',
+      links: 'Important Links',
+      services: 'Services',
+      compliance: 'Compliance Note',
+      complianceText: 'Loan approval eligibility, document verification, internal assessment और applicable terms पर निर्भर है।',
+      rights: '© 2026 Essar Finex Pvt. Ltd. All rights reserved.'
+    }
   }
-];
-
-const processSteps = [
-  ['01', 'Apply Online', 'Share your requirement, amount range, city, and preferred loan category.'],
-  ['02', 'Verify Documents', 'KYC, bank statements, income proof, and applicable asset documents are reviewed.'],
-  ['03', 'Approval & Offer', 'Eligible applicants receive a clear offer with amount, tenure, and repayment terms.'],
-  ['04', 'Quick Disbursal', 'After acceptance and final checks, funds are processed as per approved terms.']
-];
-
-const eligibility = [
-  'Applicant age must be 21-60 years',
-  'Indian citizen',
-  'Valid PAN and Aadhaar',
-  'Active bank account',
-  'Stable source of income'
-];
-
-const documents = [
-  'PAN Card',
-  'Aadhaar Card',
-  'Bank Statement: 3 months / 6 months / 9 months / 12 months',
-  'Income Proof',
-  'Property / Vehicle / Security-related documents where applicable'
-];
-
-const stats = [
-  ['6', 'Loan categories'],
-  ['4', 'Step review flow'],
-  ['12', 'Months statement option'],
-  ['100', 'Document-led process']
-];
-
-const testimonials = [
-  {
-    name: 'Business Owner',
-    location: 'Delhi NCR',
-    text: 'The team explained the property and bank statement requirements before we submitted the file. That made the process easier to plan.',
-    initials: 'BO'
-  },
-  {
-    name: 'Self-employed Professional',
-    location: 'Jaipur',
-    text: 'I understood what documents were needed, what would be verified, and what the next step would be. The discussion was practical.',
-    initials: 'SP'
-  },
-  {
-    name: 'Vehicle Finance Customer',
-    location: 'Mumbai',
-    text: 'The communication was direct. I liked that the vehicle documents and eligibility points were explained step by step.',
-    initials: 'VC'
-  }
-];
-
-const faqs = [
-  {
-    q: 'What loan services does Essar Finex Pvt. Ltd. provide?',
-    a: 'We provide mortgage of property, short term loan, security loan including shares and stock, vehicle loan, project funding, and personal loan solutions.'
-  },
-  {
-    q: 'What is the basic age eligibility?',
-    a: 'Applicants should generally be between 21 and 60 years of age and must meet income, KYC, and bank account requirements.'
-  },
-  {
-    q: 'Are documents different for every loan type?',
-    a: 'Basic KYC and bank statements are required for most applications. Property, vehicle, or security-related documents are required where the loan is backed by those assets.'
-  },
-  {
-    q: 'How quickly can the loan be disbursed?',
-    a: 'Disbursal timelines depend on eligibility, document completion, verification, and approval terms.'
-  }
-];
+};
 
 function useScrollReveal() {
   useEffect(() => {
@@ -162,17 +464,15 @@ function useCounter(target, active) {
 function App() {
   const [page, setPage] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [lang, setLang] = useState('en');
+  const t = translations[lang];
   useScrollReveal();
 
-  const pageTitle = useMemo(() => {
-    const names = {
-      home: 'Essar Finex Pvt. Ltd. | Property, Vehicle, Security & Personal Loans',
-      about: 'About Essar Finex Pvt. Ltd.',
-      services: 'Financial Services | Essar Finex Pvt. Ltd.',
-      contact: 'Contact Essar Finex Pvt. Ltd.'
-    };
-    return names[page];
-  }, [page]);
+  useEffect(() => {
+    document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+  }, [lang]);
+
+  const pageTitle = useMemo(() => t.pageTitles[page], [page, t]);
 
   const goTo = (nextPage) => {
     setPage(nextPage);
@@ -182,25 +482,25 @@ function App() {
 
   return (
     <>
-      <Header page={page} goTo={goTo} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <Header page={page} goTo={goTo} menuOpen={menuOpen} setMenuOpen={setMenuOpen} lang={lang} setLang={setLang} t={t} />
       <main>
         <h1 className="sr-only">{pageTitle}</h1>
-        {page === 'home' && <Home goTo={goTo} />}
-        {page === 'about' && <About />}
-        {page === 'services' && <Services goTo={goTo} />}
-        {page === 'contact' && <Contact />}
+        {page === 'home' && <Home goTo={goTo} t={t} lang={lang} />}
+        {page === 'about' && <About t={t} />}
+        {page === 'services' && <Services goTo={goTo} t={t} />}
+        {page === 'contact' && <Contact t={t} />}
       </main>
-      <Footer goTo={goTo} />
+      <Footer goTo={goTo} t={t} />
     </>
   );
 }
 
-function Header({ page, goTo, menuOpen, setMenuOpen }) {
+function Header({ page, goTo, menuOpen, setMenuOpen, lang, setLang, t }) {
   const navItems = [
-    ['home', 'Home'],
-    ['about', 'About Us'],
-    ['services', 'Services'],
-    ['contact', 'Contact']
+    ['home', t.nav.home],
+    ['about', t.nav.about],
+    ['services', t.nav.services],
+    ['contact', t.nav.contact]
   ];
 
   return (
@@ -234,214 +534,177 @@ function Header({ page, goTo, menuOpen, setMenuOpen }) {
             {label}
           </a>
         ))}
+        <button className="language-switch" type="button" onClick={() => setLang(lang === 'en' ? 'hi' : 'en')} aria-label="Switch language">
+          <span className={lang === 'en' ? 'active' : ''}>EN</span>
+          <span className={lang === 'hi' ? 'active' : ''}>हिं</span>
+        </button>
         <a className="nav-cta" href="#contact" onClick={(event) => { event.preventDefault(); goTo('contact'); }}>
-          Apply Now
+          {t.nav.apply}
         </a>
       </nav>
     </header>
   );
 }
 
-function Home({ goTo }) {
+function Home({ goTo, t }) {
   return (
     <>
-      <Hero goTo={goTo} />
-      <TrustBar />
-      <ServicesPreview goTo={goTo} />
-      <WhyChoose />
-      <LoanProcess />
-      <CriteriaAndDocs />
-      <TrustCompliance />
-      <Testimonials />
-      <Faqs />
-      <ContactCta goTo={goTo} />
+      <Hero goTo={goTo} t={t} />
+      <TrustBar t={t} />
+      <ServicesPreview goTo={goTo} t={t} />
+      <WhyChoose t={t} />
+      <LoanProcess t={t} />
+      <CriteriaAndDocs t={t} />
+      <TrustCompliance t={t} />
+      <Testimonials t={t} />
+      <Faqs t={t} />
+      <ContactCta goTo={goTo} t={t} />
     </>
   );
 }
 
-function Hero({ goTo }) {
+function Hero({ goTo, t }) {
   return (
-    <section className="hero" data-reveal>
+    <section className="hero" id="home">
       <div className="hero-orb orb-one" />
       <div className="hero-orb orb-two" />
-      <div className="hero-copy">
-        <p className="eyebrow">Secured and personal funding</p>
-        <h2>Borrow with clarity before you commit.</h2>
-        <p>
-          Essar Finex Pvt. Ltd. helps applicants prepare the right file for mortgage of
-          property, short term loans, security-backed loans, vehicle loans, project funding,
-          and personal loans.
-        </p>
-        <div className="hero-badges" aria-label="Verification highlights">
-          <span>PAN & Aadhaar based KYC</span>
-          <span>Bank statement and income review</span>
-          <span>Asset documents where applicable</span>
+      <div className="hero-copy" data-reveal>
+        <p className="eyebrow">{t.hero.eyebrow}</p>
+        <h2>{t.hero.title}</h2>
+        <p>{t.hero.text}</p>
+        <div className="hero-badges" aria-label="Trust highlights">
+          {t.hero.badges.map((badge) => <span key={badge}>{badge}</span>)}
         </div>
         <div className="hero-actions">
-          <button className="button primary" onClick={() => goTo('contact')}>Apply Now</button>
-          <a className="button secondary" href="#eligibility">Check Eligibility</a>
+          <button className="button primary" type="button" onClick={() => goTo('contact')}>{t.hero.apply}</button>
+          <button className="button secondary" type="button" onClick={() => document.getElementById('eligibility')?.scrollIntoView({ behavior: 'smooth' })}>{t.hero.eligibility}</button>
+          <button className="button secondary" type="button" onClick={() => goTo('contact')}>{t.nav.contact}</button>
         </div>
       </div>
-
-      <div className="hero-stage" aria-label="Loan calculator and trust preview">
-        <LoanCalculatorCard />
+      <div className="hero-stage" data-reveal>
         <div className="floating-card approval-card">
-          <span>File readiness</span>
+          <span>{t.hero.calculator.readiness}</span>
           <strong>92%</strong>
-          <small>KYC + income + documents aligned</small>
+          <small>{t.hero.calculator.readinessText}</small>
         </div>
+        <LoanCalculatorCard t={t} />
         <div className="floating-card support-card">
-          <span>Assisted review</span>
-          <strong>Human-led</strong>
-          <small>Talk to a finance team before final submission</small>
+          <span>{t.hero.calculator.assisted}</span>
+          <strong>{t.hero.calculator.human}</strong>
+          <small>{t.hero.calculator.humanText}</small>
         </div>
       </div>
     </section>
   );
 }
 
-function LoanCalculatorCard() {
+function LoanCalculatorCard({ t }) {
   const [amount, setAmount] = useState(12);
   const [tenure, setTenure] = useState(36);
-  const estimate = Math.round((amount * 100000) / tenure);
+  const monthly = Math.max(1, Math.round((amount * 100000) / tenure));
 
   return (
-    <article className="calculator-card">
+    <article className="calculator-card" aria-label={t.hero.calculator.top}>
       <div className="card-topline">
-        <span>Loan preview</span>
-        <strong>Indicative</strong>
+        <span>{t.hero.calculator.top}</span>
+        <strong>{t.hero.calculator.status}</strong>
       </div>
-      <h3>Plan your requirement</h3>
+      <h3>{t.hero.calculator.title}</h3>
       <label>
-        Required amount
-        <input
-          type="range"
-          min="2"
-          max="50"
-          value={amount}
-          onChange={(event) => setAmount(event.target.value)}
-        />
-        <span className="range-value">Rs. {amount} lakh</span>
+        {t.hero.calculator.amount}
+        <input type="range" min="2" max="50" value={amount} onChange={(event) => setAmount(Number(event.target.value))} />
+        <span className="range-value">{t.hero.calculator.amountValue(amount)}</span>
       </label>
       <label>
-        Preferred tenure
-        <input
-          type="range"
-          min="6"
-          max="60"
-          step="6"
-          value={tenure}
-          onChange={(event) => setTenure(event.target.value)}
-        />
-        <span className="range-value">{tenure} months</span>
+        {t.hero.calculator.tenure}
+        <input type="range" min="6" max="84" step="6" value={tenure} onChange={(event) => setTenure(Number(event.target.value))} />
+        <span className="range-value">{t.hero.calculator.tenureValue(tenure)}</span>
       </label>
       <div className="estimate-row">
-        <span>Planning benchmark</span>
-        <strong>Rs. {estimate.toLocaleString('en-IN')} / month</strong>
+        <span>{t.hero.calculator.benchmark}</span>
+        <strong>Rs. {monthly.toLocaleString('en-IN')} / {t.hero.calculator.month}</strong>
       </div>
-      <p>Final offer depends on eligibility, documents, collateral, and internal assessment.</p>
+      <p>{t.hero.calculator.note}</p>
     </article>
   );
 }
 
-function TrustBar() {
+function TrustBar({ t }) {
   return (
-    <section className="trust-bar container" data-reveal>
-      <span>Transparent assessment</span>
-      <span>PAN and Aadhaar KYC</span>
-      <span>Asset-backed options</span>
-      <span>Clear document checklist</span>
-    </section>
+    <div className="container trust-bar" aria-label="Trust signals" data-reveal>
+      {t.trustBar.map((item) => <span key={item}>{item}</span>)}
+    </div>
   );
 }
 
-function ServicesPreview({ goTo }) {
+function ServicesPreview({ goTo, t }) {
   return (
-    <section className="section section-soft">
+    <section className="section section-soft" id="services">
       <div className="container">
-        <SectionHeading
-          eyebrow="Services"
-          title="Six focused lending categories. No clutter, no confusing positioning."
-          text="Each product starts with a purpose, a document checklist, and a realistic assessment path."
-          action={<button className="button secondary" onClick={() => goTo('services')}>View All Services</button>}
-        />
-        <ServiceGrid goTo={goTo} compact />
+        <SectionHeading eyebrow={t.servicesSection.eyebrow} title={t.servicesSection.title} text={t.servicesSection.text} split>
+          <button className="button secondary" type="button" onClick={() => goTo('services')}>{t.servicesSection.action}</button>
+        </SectionHeading>
+        <ServiceGrid compact goTo={goTo} t={t} />
       </div>
     </section>
   );
 }
 
-function WhyChoose() {
+function WhyChoose({ t }) {
+  return (
+    <section className="section">
+      <div className="container">
+        <SectionHeading eyebrow={t.why.eyebrow} title={t.why.title} text={t.why.text} />
+        <div className="stats-grid" data-reveal>
+          {t.why.stats.map(([target, label]) => <Stat key={label} target={target} label={label} />)}
+        </div>
+        <div className="feature-grid">
+          {t.why.features.map(([title, text], index) => (
+            <article className="feature-card" key={title} data-reveal>
+              <span className="feature-icon">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Stat({ target, label }) {
   const [active, setActive] = useState(false);
+  const value = useCounter(target, active);
 
   useEffect(() => {
-    const node = document.querySelector('.stats-grid');
+    const node = document.querySelector(`[data-stat="${label}"]`);
     if (!node) return undefined;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setActive(true);
         observer.disconnect();
       }
-    });
+    }, { threshold: 0.3 });
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
-
-  const features = [
-    ['Clarity before submission', 'Understand the required KYC, bank statement, income, and asset documents before the file moves.'],
-    ['Human finance team', 'Discuss purpose, repayment comfort, security coverage, and next steps with a real team.'],
-    ['Responsible assessment', 'Eligibility, documents, collateral, and offer terms are reviewed before approval.'],
-    ['Premium support flow', 'A focused process for salaried professionals, business owners, entrepreneurs, and individuals.']
-  ];
+  }, [label]);
 
   return (
-    <section className="section container why-section" data-reveal>
-      <SectionHeading
-        eyebrow="Why choose us"
-        title="A lending experience designed around trust, speed, and simplicity."
-        text="The interface is polished, but the promise stays practical: prepare the right file, understand eligibility, and move with confidence."
-      />
-      <div className="stats-grid">
-        {stats.map(([target, label]) => (
-          <Stat key={label} target={target} label={label} active={active} />
-        ))}
-      </div>
-      <div className="feature-grid premium-grid">
-        {features.map(([title, text]) => (
-          <article className="feature-card" key={title}>
-            <span className="feature-icon" aria-hidden="true">✓</span>
-            <h3>{title}</h3>
-            <p>{text}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Stat({ target, label, active }) {
-  const numeric = useCounter(target, active);
-  const suffix = label === 'Document-led process' ? '%' : '';
-  return (
-    <article className="stat-card">
-      <strong>{numeric}{suffix}</strong>
+    <article className="stat-card" data-stat={label}>
+      <strong>{value}{Number(target) === 100 ? '%' : '+'}</strong>
       <span>{label}</span>
     </article>
   );
 }
 
-function LoanProcess() {
+function LoanProcess({ t }) {
   return (
-    <section className="section process-section" data-reveal>
+    <section className="section process-section">
       <div className="container">
-        <SectionHeading
-          eyebrow="Loan process"
-          title="A guided four-step journey from enquiry to disbursal."
-          text="The process stays simple while still respecting verification, documentation, and responsible approval."
-        />
+        <SectionHeading eyebrow={t.process.eyebrow} title={t.process.title} text={t.process.text} />
         <div className="timeline">
-          {processSteps.map(([number, title, text]) => (
-            <article className="timeline-step" key={title}>
+          {t.process.steps.map(([number, title, text]) => (
+            <article className="timeline-step" key={number} data-reveal>
               <span>{number}</span>
               <h3>{title}</h3>
               <p>{text}</p>
@@ -453,12 +716,12 @@ function LoanProcess() {
   );
 }
 
-function CriteriaAndDocs() {
+function CriteriaAndDocs({ t }) {
   return (
-    <section id="eligibility" className="section section-dark" data-reveal>
+    <section className="section section-dark" id="eligibility">
       <div className="container split-panel">
-        <InfoList title="Eligibility Criteria" items={eligibility} />
-        <InfoList title="Documents Required" items={documents} />
+        <InfoList title={t.criteria.eligibilityTitle} items={t.criteria.eligibility} />
+        <InfoList title={t.criteria.documentsTitle} items={t.criteria.documents} />
       </div>
     </section>
   );
@@ -466,7 +729,7 @@ function CriteriaAndDocs() {
 
 function InfoList({ title, items }) {
   return (
-    <article className="info-panel">
+    <article className="info-panel" data-reveal>
       <h2>{title}</h2>
       <ul>
         {items.map((item) => <li key={item}>{item}</li>)}
@@ -475,76 +738,61 @@ function InfoList({ title, items }) {
   );
 }
 
-function TrustCompliance() {
+function TrustCompliance({ t }) {
   return (
-    <section className="section container trust-layout" data-reveal>
-      <div>
-        <p className="eyebrow">Trust & compliance</p>
-        <h2>Responsible review before commitment.</h2>
-        <p>
-          Every file is reviewed for identity, income, banking history, and applicable
-          collateral records. The goal is to make the approval path clear before the
-          borrower accepts an offer.
-        </p>
-        <p className="fine-print">
-          Loan amount, tenure, rate, and disbursal are subject to eligibility,
-          documentation, credit assessment, and applicable internal policies.
-        </p>
-      </div>
-      <div className="compliance-card">
-        <strong>Trust signals</strong>
-        <ul>
-          <li>PAN and Aadhaar based KYC checks</li>
-          <li>Income and bank statement review</li>
-          <li>Asset documentation for secured products</li>
-          <li>Clear offer terms before disbursal</li>
-        </ul>
+    <section className="section">
+      <div className="container trust-layout">
+        <div data-reveal>
+          <p className="eyebrow">{t.compliance.eyebrow}</p>
+          <h2>{t.compliance.title}</h2>
+          <p>{t.compliance.text}</p>
+          <p className="fine-print">{t.compliance.note}</p>
+        </div>
+        <article className="compliance-card" data-reveal>
+          <strong>{t.compliance.heading}</strong>
+          <ul>
+            {t.compliance.points.map((point) => <li key={point}>{point}</li>)}
+          </ul>
+        </article>
       </div>
     </section>
   );
 }
 
-function Testimonials() {
-  const [index, setIndex] = useState(0);
+function Testimonials({ t }) {
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      setIndex((current) => (current + 1) % testimonials.length);
+      setActive((index) => (index + 1) % t.testimonials.items.length);
     }, 4200);
     return () => window.clearInterval(timer);
-  }, []);
+  }, [t.testimonials.items.length]);
 
   return (
-    <section className="section testimonial-section" data-reveal>
+    <section className="section testimonial-section">
       <div className="container">
-        <SectionHeading
-          eyebrow="Testimonials"
-          title="Customers remember clear communication."
-          text="The review cards below represent the kind of experience this website is designed to communicate."
-        />
-        <div className="carousel" aria-live="polite">
-          {testimonials.map((testimonial, itemIndex) => (
-            <figure
-              className={itemIndex === index ? 'testimonial active' : 'testimonial'}
-              key={testimonial.name}
-            >
-              <div className="avatar">{testimonial.initials}</div>
-              <blockquote>{testimonial.text}</blockquote>
+        <SectionHeading eyebrow={t.testimonials.eyebrow} title={t.testimonials.title} text={t.testimonials.text} />
+        <div className="carousel" data-reveal>
+          {t.testimonials.items.map((item, index) => (
+            <figure className={index === active ? 'testimonial active' : 'testimonial'} key={item.name}>
+              <span className="avatar">{item.initials}</span>
+              <blockquote>{item.text}</blockquote>
               <figcaption>
-                <strong>{testimonial.name}</strong>
-                <span>{testimonial.location}</span>
+                <strong>{item.name}</strong>
+                <span>{item.location}</span>
               </figcaption>
             </figure>
           ))}
         </div>
-        <div className="carousel-dots" aria-label="Testimonials selector">
-          {testimonials.map((testimonial, itemIndex) => (
+        <div className="carousel-dots" aria-label="Testimonials">
+          {t.testimonials.items.map((item, index) => (
             <button
-              key={testimonial.name}
-              className={itemIndex === index ? 'active' : ''}
+              key={item.name}
+              className={index === active ? 'active' : ''}
               type="button"
-              aria-label={`Show testimonial ${itemIndex + 1}`}
-              onClick={() => setIndex(itemIndex)}
+              aria-label={`Show testimonial ${index + 1}`}
+              onClick={() => setActive(index)}
             />
           ))}
         </div>
@@ -553,188 +801,152 @@ function Testimonials() {
   );
 }
 
-function Faqs() {
+function Faqs({ t }) {
   return (
-    <section className="section container" data-reveal>
-      <SectionHeading eyebrow="FAQs" title="Questions borrowers usually ask first." />
-      <div className="faq-list">
-        {faqs.map(({ q, a }) => (
-          <details key={q}>
-            <summary>{q}</summary>
-            <p>{a}</p>
-          </details>
+    <section className="section">
+      <div className="container">
+        <SectionHeading eyebrow={t.faqs.eyebrow} title={t.faqs.title} />
+        <div className="faq-list" data-reveal>
+          {t.faqs.items.map((item) => (
+            <details key={item.q}>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ContactCta({ goTo, t }) {
+  return (
+    <section className="section">
+      <div className="container cta-panel" data-reveal>
+        <div>
+          <p className="eyebrow">{t.cta.eyebrow}</p>
+          <h2>{t.cta.title}</h2>
+          <p>{t.cta.text}</p>
+        </div>
+        <button className="button light" type="button" onClick={() => goTo('contact')}>{t.cta.action}</button>
+      </div>
+    </section>
+  );
+}
+
+function About({ t }) {
+  return (
+    <section className="page-section">
+      <PageHero eyebrow={t.about.eyebrow} title={t.about.title} text={t.about.text} />
+      <div className="container about-grid">
+        {t.about.cards.map(([title, text]) => (
+          <article className={title === 'Vision' || title === 'Mission' ? 'highlight-box' : ''} key={title} data-reveal>
+            <h2>{title}</h2>
+            <p>{text}</p>
+          </article>
         ))}
       </div>
     </section>
   );
 }
 
-function ContactCta({ goTo }) {
-  return (
-    <section className="section container" data-reveal>
-      <div className="cta-panel">
-        <div>
-          <p className="eyebrow">Ready to apply?</p>
-          <h2>Share your requirement and get the document checklist first.</h2>
-          <p>Our team will review the loan category, basic eligibility, and documents needed for the next step.</p>
-        </div>
-        <button className="button light" onClick={() => goTo('contact')}>Contact Our Team</button>
-      </div>
-    </section>
-  );
-}
-
-function About() {
+function Services({ goTo, t }) {
   return (
     <section className="page-section">
-      <PageHero
-        eyebrow="About us"
-        title="A finance partner for borrowers who value clarity and proper documentation."
-        text="Essar Finex Pvt. Ltd. focuses on responsible assessment, practical file preparation, and support across secured and unsecured lending needs."
-      />
-      <div className="container about-grid" data-reveal>
-        <article>
-          <h2>Company Overview</h2>
-          <p>
-            Essar Finex Pvt. Ltd. serves borrowers who need structured lending support
-            for property mortgage, short term funding, security-backed loans, vehicle
-            finance, project funding, and personal loan requirements.
-          </p>
-        </article>
-        <article className="highlight-box">
-          <h2>Trust & Compliance</h2>
-          <p>
-            Every loan request is reviewed through KYC, income, bank account, and relevant
-            asset documentation. Approval and disbursal remain subject to verification,
-            eligibility, and internal policy.
-          </p>
-        </article>
-        <article>
-          <h2>Vision</h2>
-          <p>
-            To become a trusted lending partner by making document requirements,
-            eligibility discussion, and offer terms easier to understand.
-          </p>
-        </article>
-        <article>
-          <h2>Mission</h2>
-          <p>
-            To deliver responsible lending support with professional service, transparent
-            document requirements, and timely coordination from enquiry to disbursal.
-          </p>
-        </article>
+      <PageHero eyebrow={t.servicesPage.eyebrow} title={t.servicesPage.title} text={t.servicesPage.text} />
+      <div className="container page-grid">
+        <ServiceGrid goTo={goTo} t={t} />
       </div>
     </section>
   );
 }
 
-function Services({ goTo }) {
-  return (
-    <section className="page-section">
-      <PageHero
-        eyebrow="Services"
-        title="Loan products designed around security, purpose, and repayment comfort."
-        text="Explore lending options for property-backed funding, short-term liquidity, eligible securities, vehicles, projects, and personal requirements."
-      />
-      <div className="container page-grid" data-reveal>
-        <ServiceGrid goTo={goTo} />
-      </div>
-      <CriteriaAndDocs />
-    </section>
-  );
-}
+function ServiceGrid({ compact = false, goTo, t }) {
+  const services = compact ? t.services.slice(0, 6) : t.services;
 
-function ServiceGrid({ compact = false, goTo }) {
   return (
-    <div className={compact ? 'service-grid compact' : 'service-grid'}>
+    <div className="service-grid">
       {services.map((service) => (
-        <article className="service-card" key={service.title}>
+        <article className="service-card" key={service.title} data-reveal>
           <span className="service-icon">{service.icon}</span>
-          <span className="service-tag">Loan category</span>
+          <span className="service-tag">{t.servicesSection.tag}</span>
           <h3>{service.title}</h3>
           <p>{service.text}</p>
           <div className="best-for">
-            <span>Best for</span>
+            <span>{t.servicesSection.bestFor}</span>
             <strong>{service.bestFor}</strong>
           </div>
           <ul>
             {service.points.map((point) => <li key={point}>{point}</li>)}
           </ul>
-          <button type="button" className="service-link" onClick={() => goTo('contact')}>Enquire Now</button>
+          <button className="service-link" type="button" onClick={() => goTo('contact')}>{t.servicesSection.enquire}</button>
         </article>
       ))}
     </div>
   );
 }
 
-function Contact() {
+function Contact({ t }) {
   return (
     <section className="page-section">
-      <PageHero
-        eyebrow="Contact"
-        title="Book a consultation with Essar Finex Pvt. Ltd."
-        text="Send your details and our team will connect with you for eligibility guidance, documentation support, and next steps."
-      />
-      <div className="container contact-layout" data-reveal>
+      <PageHero eyebrow={t.contact.eyebrow} title={t.contact.title} text={t.contact.text} />
+      <div className="container contact-layout">
         <div className="contact-details">
-          <ContactItem label="Registered Office Address" value="Registered office address placeholder" />
-          <ContactItem label="Customer Support Email" value="support@essarfinex.example" />
-          <ContactItem label="Customer Care Number" value="+91 XXXXX XXXXX" />
-          <ContactItem label="Working Hours" value="Monday to Saturday, 10:00 AM to 6:00 PM" />
-          <div className="map-card">
-            <span>Office location</span>
-            <strong>Map placeholder</strong>
-          </div>
+          {t.contact.details.map(([label, value]) => <ContactItem key={label} label={label} value={value} />)}
+          <article className="map-card" data-reveal>
+            <span>{t.contact.mapLabel}</span>
+            <strong>{t.contact.mapValue}</strong>
+          </article>
         </div>
-        <ConsultationForm />
+        <ConsultationForm t={t} />
       </div>
     </section>
   );
 }
 
-function ConsultationForm() {
+function ConsultationForm({ t }) {
   return (
-    <form className="contact-form">
+    <form className="contact-form" data-reveal>
       <div className="form-heading">
-        <h2>Request a call back</h2>
-        <p>Share the basics and our team will guide you on eligibility and documents.</p>
+        <h2>{t.contact.formTitle}</h2>
+        <p>{t.contact.formText}</p>
       </div>
       <label>
-        Full Name
-        <input type="text" name="name" placeholder="Enter your full name" />
+        {t.contact.fields.name}
+        <input type="text" name="name" placeholder={t.contact.fields.namePlaceholder} />
       </label>
       <label>
-        Mobile Number
+        {t.contact.fields.phone}
         <input type="tel" name="phone" placeholder="+91" />
       </label>
       <label>
-        City
-        <input type="text" name="city" placeholder="Your city" />
+        {t.contact.fields.city}
+        <input type="text" name="city" placeholder={t.contact.fields.cityPlaceholder} />
       </label>
       <label>
-        Loan Requirement
-        <select name="service" defaultValue="">
-          <option value="" disabled>Select a service</option>
-          {services.map((service) => <option key={service.title}>{service.title}</option>)}
+        {t.contact.fields.requirement}
+        <select name="requirement" defaultValue="">
+          <option value="" disabled>{t.contact.fields.select}</option>
+          {t.services.map((service) => <option key={service.title}>{service.title}</option>)}
         </select>
       </label>
       <label>
-        Required Amount
-        <input type="text" name="amount" placeholder="Example: 5 lakh" />
+        {t.contact.fields.amount}
+        <input type="text" name="amount" placeholder={t.contact.fields.amountPlaceholder} />
       </label>
       <label>
-        Message
-        <textarea name="message" rows="5" placeholder="Tell us your requirement" />
+        {t.contact.fields.message}
+        <textarea name="message" rows="4" placeholder={t.contact.fields.messagePlaceholder} />
       </label>
-      <button className="button primary" type="submit">Submit Enquiry</button>
-      <p className="form-note">Submitting this form does not guarantee approval. Our team will contact you for verification and next steps.</p>
+      <button className="button primary" type="submit">{t.contact.fields.submit}</button>
+      <p className="form-note">{t.contact.fields.note}</p>
     </form>
   );
 }
 
 function ContactItem({ label, value }) {
   return (
-    <article className="contact-item">
+    <article className="contact-item" data-reveal>
       <span>{label}</span>
       <strong>{value}</strong>
     </article>
@@ -743,67 +955,66 @@ function ContactItem({ label, value }) {
 
 function PageHero({ eyebrow, title, text }) {
   return (
-    <section className="inner-hero">
+    <div className="inner-hero">
       <div className="container" data-reveal>
         <p className="eyebrow">{eyebrow}</p>
         <h2>{title}</h2>
         <p>{text}</p>
       </div>
-    </section>
+    </div>
   );
 }
 
-function SectionHeading({ eyebrow, title, text, action }) {
+function SectionHeading({ eyebrow, title, text, children, split = false }) {
   return (
-    <div className={action ? 'section-heading split' : 'section-heading'}>
+    <div className={split ? 'section-heading split' : 'section-heading'} data-reveal>
       <div>
         <p className="eyebrow">{eyebrow}</p>
         <h2>{title}</h2>
         {text && <p>{text}</p>}
       </div>
-      {action}
+      {children}
     </div>
   );
 }
 
-function Footer({ goTo }) {
+function Footer({ goTo, t }) {
+  const footerLinks = [
+    ['home', t.nav.home],
+    ['about', t.nav.about],
+    ['services', t.nav.services],
+    ['contact', t.nav.contact]
+  ];
+
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
-        <div>
-          <a className="brand footer-brand" href="#home" onClick={(event) => { event.preventDefault(); goTo('home'); }}>
+        <div className="footer-brand">
+          <a className="brand" href="#home" onClick={(event) => { event.preventDefault(); goTo('home'); }}>
             <span className="brand-mark">EF</span>
             <span>
               <strong>Essar Finex</strong>
               <small>Pvt. Ltd.</small>
             </span>
           </a>
-          <p>
-            Lending support for mortgage of property, short term loans, security loans,
-            vehicle loans, project funding, and personal loans.
-          </p>
+          <p>{t.footer.text}</p>
         </div>
         <div>
-          <h2>Important Links</h2>
-          <button onClick={() => goTo('about')}>About Us</button>
-          <button onClick={() => goTo('services')}>Services</button>
-          <button onClick={() => goTo('contact')}>Apply Now</button>
+          <h2>{t.footer.links}</h2>
+          {footerLinks.map(([key, label]) => (
+            <button key={key} type="button" onClick={() => goTo(key)}>{label}</button>
+          ))}
         </div>
         <div>
-          <h2>Services</h2>
-          {services.slice(0, 4).map((service) => <span key={service.title}>{service.title}</span>)}
+          <h2>{t.footer.services}</h2>
+          {t.services.slice(0, 4).map((service) => <span key={service.title}>{service.title}</span>)}
         </div>
         <div>
-          <h2>Compliance Note</h2>
-          <p>
-            Loan approval is subject to eligibility, document verification, internal assessment,
-            and applicable terms.
-          </p>
+          <h2>{t.footer.compliance}</h2>
+          <p>{t.footer.complianceText}</p>
         </div>
       </div>
-      <div className="footer-bottom">
-        <span>© 2026 Essar Finex Pvt. Ltd. All rights reserved.</span>
-      </div>
+      <div className="footer-bottom">{t.footer.rights}</div>
     </footer>
   );
 }
