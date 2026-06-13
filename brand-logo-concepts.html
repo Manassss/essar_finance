@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Essar Finex Pvt. Ltd. | Logo Concepts</title>
+    <style>
+      :root {
+        --royal: #0a3d91;
+        --navy: #091a3a;
+        --emerald: #0fb97f;
+        --gold: #c89b3c;
+        --silver: #b8bdc7;
+        --ink: #111827;
+        --muted: #667085;
+        --line: #e4e7ec;
+        --soft: #f6f8fc;
+        --white: #ffffff;
+        --shadow: 0 28px 80px rgba(9, 26, 58, 0.14);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 8% 0%, rgba(15, 185, 127, 0.08), transparent 28%),
+          radial-gradient(circle at 92% 10%, rgba(200, 155, 60, 0.1), transparent 26%),
+          var(--soft);
+        color: var(--ink);
+      }
+
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      .page {
+        width: min(1180px, calc(100% - 36px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        padding: 72px 0 54px;
+      }
+
+      .eyebrow {
+        color: var(--royal);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        margin: 0 0 14px;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        overflow-wrap: anywhere;
+      }
+
+      h1 {
+        color: var(--navy);
+        font-size: clamp(3rem, 8vw, 6.4rem);
+        letter-spacing: -0.07em;
+        line-height: 0.92;
+        margin: 0;
+        max-width: 920px;
+      }
+
+      .hero p:not(.eyebrow) {
+        color: var(--muted);
+        font-size: 1.15rem;
+        line-height: 1.75;
+        max-width: 760px;
+      }
+
+      .palette {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 34px;
+      }
+
+      .swatch {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: 0 14px 34px rgba(9, 26, 58, 0.08);
+        padding: 14px;
+      }
+
+      .swatch span {
+        display: block;
+        height: 58px;
+        border-radius: 14px;
+        margin-bottom: 12px;
+      }
+
+      .swatch strong,
+      .swatch small {
+        display: block;
+      }
+
+      .swatch strong {
+        color: var(--navy);
+      }
+
+      .swatch small {
+        color: var(--muted);
+        margin-top: 3px;
+      }
+
+      .concept {
+        border: 1px solid rgba(228, 231, 236, 0.9);
+        border-radius: 32px;
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.76));
+        box-shadow: var(--shadow);
+        margin: 34px 0;
+        overflow: hidden;
+      }
+
+      .concept-head {
+        display: grid;
+        grid-template-columns: 0.78fr 1.22fr;
+        gap: 30px;
+        align-items: center;
+        padding: 34px;
+      }
+
+      .concept-title h2 {
+        color: var(--navy);
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        letter-spacing: -0.05em;
+        line-height: 1;
+        margin: 0;
+      }
+
+      .concept-title p {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .logo-stage {
+        display: grid;
+        min-height: 260px;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        background:
+          radial-gradient(circle at 20% 0%, rgba(15, 185, 127, 0.08), transparent 28%),
+          linear-gradient(135deg, #ffffff, #eef4ff);
+        padding: 26px;
+      }
+
+      .variant-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        padding: 0 34px 34px;
+      }
+
+      .variant {
+        display: grid;
+        min-height: 168px;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: #ffffff;
+        padding: 18px;
+      }
+
+      .variant.dark {
+        background:
+          radial-gradient(circle at 80% 0%, rgba(15, 185, 127, 0.16), transparent 32%),
+          var(--navy);
+      }
+
+      .variant.icon-only svg {
+        width: 82px;
+      }
+
+      .variant-label {
+        align-self: end;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        margin-top: 12px;
+        text-transform: uppercase;
+      }
+
+      .details {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        border-top: 1px solid var(--line);
+        background: #fbfcff;
+        padding: 24px 34px;
+      }
+
+      .detail-card {
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: #ffffff;
+        padding: 18px;
+      }
+
+      .detail-card h3 {
+        color: var(--navy);
+        font-size: 1rem;
+        margin: 0 0 8px;
+      }
+
+      .detail-card p {
+        color: var(--muted);
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      .mockups {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        padding: 0 34px 34px;
+      }
+
+      .mockup {
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: #ffffff;
+        min-height: 210px;
+        overflow: hidden;
+        padding: 18px;
+      }
+
+      .mockup h3 {
+        color: var(--navy);
+        font-size: 0.86rem;
+        letter-spacing: 0.08em;
+        margin: 0 0 14px;
+        text-transform: uppercase;
+      }
+
+      .mock-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 12px;
+      }
+
+      .mock-card {
+        display: grid;
+        align-content: space-between;
+        min-height: 138px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, var(--navy), var(--royal));
+        color: #ffffff;
+        padding: 16px;
+      }
+
+      .mock-app {
+        display: grid;
+        width: 112px;
+        height: 112px;
+        place-items: center;
+        border-radius: 28px;
+        background: linear-gradient(135deg, var(--royal), var(--navy));
+        box-shadow: 0 22px 44px rgba(10, 61, 145, 0.28);
+        margin: 18px auto 0;
+      }
+
+      .mock-sign {
+        display: grid;
+        min-height: 132px;
+        place-items: center;
+        border-radius: 18px;
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+          var(--navy);
+        background-size: 26px 26px;
+      }
+
+      .wordmark {
+        font-weight: 850;
+        letter-spacing: -0.035em;
+      }
+
+      .small-logo {
+        width: 180px;
+      }
+
+      .mono * {
+        fill: var(--navy) !important;
+        stroke: var(--navy) !important;
+      }
+
+      .dark-logo .logo-text,
+      .dark-logo .logo-subtext,
+      .dark-logo .mark-lines {
+        fill: #ffffff;
+      }
+
+      @media (max-width: 920px) {
+        .palette,
+        .variant-grid,
+        .details,
+        .mockups,
+        .concept-head {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero {
+          padding-top: 42px;
+        }
+
+        .concept-head,
+        .palette,
+        .variant-grid,
+        .details,
+        .mockups {
+          grid-template-columns: 1fr;
+        }
+
+        .concept-head,
+        .variant-grid,
+        .details,
+        .mockups {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Brand identity presentation</p>
+        <h1>Essar Finex Pvt. Ltd. logo concepts</h1>
+        <p>
+          Five distinct premium finance identity directions designed for a lending and
+          financial services company: credible, minimal, memorable, and built for long-term use.
+        </p>
+        <div class="palette" aria-label="Color palette">
+          <div class="swatch"><span style="background:#0A3D91"></span><strong>Deep Royal Blue</strong><small>#0A3D91</small></div>
+          <div class="swatch"><span style="background:#091A3A"></span><strong>Navy</strong><small>#091A3A</small></div>
+          <div class="swatch"><span style="background:#0FB97F"></span><strong>Emerald</strong><small>#0FB97F</small></div>
+          <div class="swatch"><span style="background:#C89B3C"></span><strong>Metallic Gold</strong><small>#C89B3C</small></div>
+          <div class="swatch"><span style="background:#B8BDC7"></span><strong>Silver</strong><small>#B8BDC7</small></div>
+        </div>
+      </section>
+
+      <section class="concept">
+        <div class="concept-head">
+          <div class="concept-title">
+            <p class="eyebrow">Concept 1</p>
+            <h2>Premium Monogram</h2>
+            <p>
+              A geometric EF monogram for an institutional lender. The angular construction
+              feels stable, compact, and highly usable as a favicon, app icon, and seal.
+            </p>
+          </div>
+          <div class="logo-stage">
+            <svg viewBox="0 0 560 180" role="img" aria-label="Essar Finex premium monogram logo">
+              <rect x="16" y="18" width="126" height="126" rx="32" fill="#0A3D91" />
+              <path d="M50 52h54v18H70v14h30v17H70v27H50V52Z" fill="#fff" />
+              <path d="M91 52h43v18h-23v18h20v17h-20v23H91V52Z" fill="#C89B3C" />
+              <text x="170" y="82" class="logo-text wordmark" fill="#091A3A" font-size="42">Essar Finex</text>
+              <text x="172" y="116" class="logo-subtext" fill="#667085" font-size="17" letter-spacing="2">PVT. LTD.</text>
+            </svg>
+          </div>
+        </div>
+        <div class="variant-grid">
+          <div class="variant"><svg viewBox="0 0 560 180"><rect x="16" y="18" width="126" height="126" rx="32" fill="#0A3D91"/><path d="M50 52h54v18H70v14h30v17H70v27H50V52Z" fill="#fff"/><path d="M91 52h43v18h-23v18h20v17h-20v23H91V52Z" fill="#C89B3C"/><text x="170" y="82" class="wordmark" fill="#091A3A" font-size="42">Essar Finex</text><text x="172" y="116" fill="#667085" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Full color</span></div>
+          <div class="variant"><svg class="mono" viewBox="0 0 560 180"><rect x="16" y="18" width="126" height="126" rx="32"/><path d="M50 52h54v18H70v14h30v17H70v27H50V52Z" fill="#fff"/><path d="M91 52h43v18h-23v18h20v17h-20v23H91V52Z" fill="#fff"/><text x="170" y="82" class="wordmark" font-size="42">Essar Finex</text><text x="172" y="116" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Monochrome</span></div>
+          <div class="variant dark"><svg class="dark-logo" viewBox="0 0 560 180"><rect x="16" y="18" width="126" height="126" rx="32" fill="#fff"/><path d="M50 52h54v18H70v14h30v17H70v27H50V52Z" fill="#0A3D91"/><path d="M91 52h43v18h-23v18h20v17h-20v23H91V52Z" fill="#C89B3C"/><text x="170" y="82" class="logo-text wordmark" font-size="42">Essar Finex</text><text x="172" y="116" class="logo-subtext" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Dark background</span></div>
+          <div class="variant icon-only"><svg viewBox="0 0 160 160"><rect x="17" y="17" width="126" height="126" rx="32" fill="#0A3D91"/><path d="M51 51h54v18H71v14h30v17H71v27H51V51Z" fill="#fff"/><path d="M92 51h43v18h-23v18h20v17h-20v23H92V51Z" fill="#C89B3C"/></svg><span class="variant-label">Icon only</span></div>
+        </div>
+        <div class="details">
+          <div class="detail-card"><h3>Brand rationale</h3><p>Compact, premium, and ownable. Best for an established finance brand that wants recognition at small sizes.</p></div>
+          <div class="detail-card"><h3>Typography</h3><p>Recommended: Avenir Next, Satoshi, or Manrope with custom tightened spacing.</p></div>
+          <div class="detail-card"><h3>Color usage</h3><p>Royal blue base with gold accent for premium trust. Navy is reserved for wordmark and formal print use.</p></div>
+        </div>
+        <div class="mockups">
+          <div class="mockup"><h3>Website header</h3><div class="mock-header"><svg class="small-logo" viewBox="0 0 560 180"><rect x="16" y="18" width="126" height="126" rx="32" fill="#0A3D91"/><path d="M50 52h54v18H70v14h30v17H70v27H50V52Z" fill="#fff"/><path d="M91 52h43v18h-23v18h20v17h-20v23H91V52Z" fill="#C89B3C"/><text x="170" y="82" class="wordmark" fill="#091A3A" font-size="42">Essar Finex</text><text x="172" y="116" fill="#667085" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><strong>Apply</strong></div></div>
+          <div class="mockup"><h3>Business card</h3><div class="mock-card"><svg width="170" viewBox="0 0 560 180"><rect x="16" y="18" width="126" height="126" rx="32" fill="#fff"/><path d="M50 52h54v18H70v14h30v17H70v27H50V52Z" fill="#0A3D91"/><path d="M91 52h43v18h-23v18h20v17h-20v23H91V52Z" fill="#C89B3C"/><text x="170" y="82" class="wordmark" fill="#fff" font-size="42">Essar Finex</text></svg><small>Financial Services / Lending</small></div></div>
+          <div class="mockup"><h3>Mobile app icon</h3><div class="mock-app"><svg width="76" viewBox="0 0 160 160"><rect x="17" y="17" width="126" height="126" rx="32" fill="#fff"/><path d="M51 51h54v18H71v14h30v17H71v27H51V51Z" fill="#0A3D91"/><path d="M92 51h43v18h-23v18h20v17h-20v23H92V51Z" fill="#C89B3C"/></svg></div></div>
+          <div class="mockup"><h3>Office signage</h3><div class="mock-sign"><svg width="250" viewBox="0 0 560 180"><rect x="16" y="18" width="126" height="126" rx="32" fill="#fff"/><path d="M50 52h54v18H70v14h30v17H70v27H50V52Z" fill="#0A3D91"/><path d="M91 52h43v18h-23v18h20v17h-20v23H91V52Z" fill="#C89B3C"/><text x="170" y="82" class="wordmark" fill="#fff" font-size="42">Essar Finex</text><text x="172" y="116" fill="#B8BDC7" font-size="17" letter-spacing="2">PVT. LTD.</text></svg></div></div>
+        </div>
+      </section>
+
+      <section class="concept">
+        <div class="concept-head">
+          <div class="concept-title">
+            <p class="eyebrow">Concept 2</p>
+            <h2>Financial Growth Symbol</h2>
+            <p>
+              A modern fintech direction using ascending capital bands. The mark suggests
+              progress, liquidity, and measured upward movement without using generic chart clipart.
+            </p>
+          </div>
+          <div class="logo-stage">
+            <svg viewBox="0 0 560 180" role="img" aria-label="Essar Finex financial growth logo">
+              <path d="M33 126V88c0-11 7-21 18-25l88-34v37l-72 28v32H33Z" fill="#0A3D91"/>
+              <path d="M65 126V93l74-29v35l-53 21v6H65Z" fill="#0FB97F"/>
+              <path d="M97 126v-17l42-17v34H97Z" fill="#C89B3C"/>
+              <text x="176" y="82" class="wordmark" fill="#091A3A" font-size="42">Essar Finex</text>
+              <text x="178" y="116" fill="#667085" font-size="17" letter-spacing="2">PVT. LTD.</text>
+            </svg>
+          </div>
+        </div>
+        <div class="variant-grid">
+          <div class="variant"><svg viewBox="0 0 560 180"><path d="M33 126V88c0-11 7-21 18-25l88-34v37l-72 28v32H33Z" fill="#0A3D91"/><path d="M65 126V93l74-29v35l-53 21v6H65Z" fill="#0FB97F"/><path d="M97 126v-17l42-17v34H97Z" fill="#C89B3C"/><text x="176" y="82" class="wordmark" fill="#091A3A" font-size="42">Essar Finex</text><text x="178" y="116" fill="#667085" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Full color</span></div>
+          <div class="variant"><svg class="mono" viewBox="0 0 560 180"><path d="M33 126V88c0-11 7-21 18-25l88-34v37l-72 28v32H33Z"/><path d="M65 126V93l74-29v35l-53 21v6H65Z"/><path d="M97 126v-17l42-17v34H97Z"/><text x="176" y="82" class="wordmark" font-size="42">Essar Finex</text><text x="178" y="116" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Monochrome</span></div>
+          <div class="variant dark"><svg class="dark-logo" viewBox="0 0 560 180"><path d="M33 126V88c0-11 7-21 18-25l88-34v37l-72 28v32H33Z" fill="#fff"/><path d="M65 126V93l74-29v35l-53 21v6H65Z" fill="#0FB97F"/><path d="M97 126v-17l42-17v34H97Z" fill="#C89B3C"/><text x="176" y="82" class="logo-text wordmark" font-size="42">Essar Finex</text><text x="178" y="116" class="logo-subtext" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Dark background</span></div>
+          <div class="variant icon-only"><svg viewBox="0 0 160 160"><path d="M24 128V75c0-12 8-23 20-28l92-35v43L61 84v44H24Z" fill="#0A3D91"/><path d="M56 128V84l80-31v41l-58 22v12H56Z" fill="#0FB97F"/><path d="M91 128v-27l45-18v45H91Z" fill="#C89B3C"/></svg><span class="variant-label">Icon only</span></div>
+        </div>
+        <div class="details">
+          <div class="detail-card"><h3>Brand rationale</h3><p>Communicates growth, movement, and access to capital while staying abstract and mature.</p></div>
+          <div class="detail-card"><h3>Typography</h3><p>Recommended: Neue Haas Grotesk, Satoshi, or Inter Tight with strong title case.</p></div>
+          <div class="detail-card"><h3>Color usage</h3><p>Royal blue for trust, emerald for growth, and gold as a premium confidence accent.</p></div>
+        </div>
+        <div class="mockups">
+          <div class="mockup"><h3>Website header</h3><div class="mock-header"><svg class="small-logo" viewBox="0 0 560 180"><path d="M33 126V88c0-11 7-21 18-25l88-34v37l-72 28v32H33Z" fill="#0A3D91"/><path d="M65 126V93l74-29v35l-53 21v6H65Z" fill="#0FB97F"/><path d="M97 126v-17l42-17v34H97Z" fill="#C89B3C"/><text x="176" y="82" class="wordmark" fill="#091A3A" font-size="42">Essar Finex</text></svg><strong>Apply</strong></div></div>
+          <div class="mockup"><h3>Business card</h3><div class="mock-card"><svg width="170" viewBox="0 0 560 180"><path d="M33 126V88c0-11 7-21 18-25l88-34v37l-72 28v32H33Z" fill="#fff"/><path d="M65 126V93l74-29v35l-53 21v6H65Z" fill="#0FB97F"/><path d="M97 126v-17l42-17v34H97Z" fill="#C89B3C"/><text x="176" y="82" class="wordmark" fill="#fff" font-size="42">Essar Finex</text></svg><small>Growth-led lending support</small></div></div>
+          <div class="mockup"><h3>Mobile app icon</h3><div class="mock-app"><svg width="76" viewBox="0 0 160 160"><path d="M24 128V75c0-12 8-23 20-28l92-35v43L61 84v44H24Z" fill="#fff"/><path d="M56 128V84l80-31v41l-58 22v12H56Z" fill="#0FB97F"/><path d="M91 128v-27l45-18v45H91Z" fill="#C89B3C"/></svg></div></div>
+          <div class="mockup"><h3>Office signage</h3><div class="mock-sign"><svg width="250" viewBox="0 0 560 180"><path d="M33 126V88c0-11 7-21 18-25l88-34v37l-72 28v32H33Z" fill="#fff"/><path d="M65 126V93l74-29v35l-53 21v6H65Z" fill="#0FB97F"/><path d="M97 126v-17l42-17v34H97Z" fill="#C89B3C"/><text x="176" y="82" class="wordmark" fill="#fff" font-size="42">Essar Finex</text><text x="178" y="116" fill="#B8BDC7" font-size="17" letter-spacing="2">PVT. LTD.</text></svg></div></div>
+        </div>
+      </section>
+
+      <section class="concept">
+        <div class="concept-head">
+          <div class="concept-title">
+            <p class="eyebrow">Concept 3</p>
+            <h2>Shield + Finance</h2>
+            <p>
+              A protected EF system inside a minimal shield. It signals security,
+              governance, and responsible financial review without becoming literal.
+            </p>
+          </div>
+          <div class="logo-stage">
+            <svg viewBox="0 0 560 180" role="img" aria-label="Essar Finex shield finance logo">
+              <path d="M86 22l58 23v38c0 38-23 61-58 77-35-16-58-39-58-77V45l58-23Z" fill="#0A3D91"/>
+              <path d="M61 61h49v17H80v13h27v16H80v29H61V61Z" fill="#fff"/>
+              <path d="M98 61h34v17h-16v19h14v15h-14v24H98V61Z" fill="#C89B3C"/>
+              <path d="M49 47l37-15 37 15" fill="none" stroke="#0FB97F" stroke-width="8" stroke-linecap="round"/>
+              <text x="174" y="82" class="wordmark" fill="#091A3A" font-size="42">Essar Finex</text>
+              <text x="176" y="116" fill="#667085" font-size="17" letter-spacing="2">PVT. LTD.</text>
+            </svg>
+          </div>
+        </div>
+        <div class="variant-grid">
+          <div class="variant"><svg viewBox="0 0 560 180"><path d="M86 22l58 23v38c0 38-23 61-58 77-35-16-58-39-58-77V45l58-23Z" fill="#0A3D91"/><path d="M61 61h49v17H80v13h27v16H80v29H61V61Z" fill="#fff"/><path d="M98 61h34v17h-16v19h14v15h-14v24H98V61Z" fill="#C89B3C"/><path d="M49 47l37-15 37 15" fill="none" stroke="#0FB97F" stroke-width="8" stroke-linecap="round"/><text x="174" y="82" class="wordmark" fill="#091A3A" font-size="42">Essar Finex</text><text x="176" y="116" fill="#667085" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Full color</span></div>
+          <div class="variant"><svg class="mono" viewBox="0 0 560 180"><path d="M86 22l58 23v38c0 38-23 61-58 77-35-16-58-39-58-77V45l58-23Z"/><path d="M61 61h49v17H80v13h27v16H80v29H61V61Z" fill="#fff"/><path d="M98 61h34v17h-16v19h14v15h-14v24H98V61Z" fill="#fff"/><text x="174" y="82" class="wordmark" font-size="42">Essar Finex</text><text x="176" y="116" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Monochrome</span></div>
+          <div class="variant dark"><svg class="dark-logo" viewBox="0 0 560 180"><path d="M86 22l58 23v38c0 38-23 61-58 77-35-16-58-39-58-77V45l58-23Z" fill="#fff"/><path d="M61 61h49v17H80v13h27v16H80v29H61V61Z" fill="#0A3D91"/><path d="M98 61h34v17h-16v19h14v15h-14v24H98V61Z" fill="#C89B3C"/><text x="174" y="82" class="logo-text wordmark" font-size="42">Essar Finex</text><text x="176" y="116" class="logo-subtext" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Dark background</span></div>
+          <div class="variant icon-only"><svg viewBox="0 0 160 160"><path d="M80 12l56 23v38c0 37-22 59-56 75-34-16-56-38-56-75V35l56-23Z" fill="#0A3D91"/><path d="M55 54h48v17H74v13h26v16H74v29H55V54Z" fill="#fff"/><path d="M92 54h34v17h-16v19h14v15h-14v24H92V54Z" fill="#C89B3C"/></svg><span class="variant-label">Icon only</span></div>
+        </div>
+        <div class="details">
+          <div class="detail-card"><h3>Brand rationale</h3><p>Best for customers who need strong assurance: secured loans, collateral review, and institutional trust.</p></div>
+          <div class="detail-card"><h3>Typography</h3><p>Recommended: Manrope, Avenir Next, or IBM Plex Sans with strong weight contrast.</p></div>
+          <div class="detail-card"><h3>Color usage</h3><p>Royal blue shield as the master mark. Gold should remain a minimal premium accent.</p></div>
+        </div>
+        <div class="mockups">
+          <div class="mockup"><h3>Website header</h3><div class="mock-header"><svg class="small-logo" viewBox="0 0 560 180"><path d="M86 22l58 23v38c0 38-23 61-58 77-35-16-58-39-58-77V45l58-23Z" fill="#0A3D91"/><path d="M61 61h49v17H80v13h27v16H80v29H61V61Z" fill="#fff"/><path d="M98 61h34v17h-16v19h14v15h-14v24H98V61Z" fill="#C89B3C"/><text x="174" y="82" class="wordmark" fill="#091A3A" font-size="42">Essar Finex</text></svg><strong>Apply</strong></div></div>
+          <div class="mockup"><h3>Business card</h3><div class="mock-card"><svg width="170" viewBox="0 0 560 180"><path d="M86 22l58 23v38c0 38-23 61-58 77-35-16-58-39-58-77V45l58-23Z" fill="#fff"/><path d="M61 61h49v17H80v13h27v16H80v29H61V61Z" fill="#0A3D91"/><path d="M98 61h34v17h-16v19h14v15h-14v24H98V61Z" fill="#C89B3C"/><text x="174" y="82" class="wordmark" fill="#fff" font-size="42">Essar Finex</text></svg><small>Secure financial review</small></div></div>
+          <div class="mockup"><h3>Mobile app icon</h3><div class="mock-app"><svg width="76" viewBox="0 0 160 160"><path d="M80 12l56 23v38c0 37-22 59-56 75-34-16-56-38-56-75V35l56-23Z" fill="#fff"/><path d="M55 54h48v17H74v13h26v16H74v29H55V54Z" fill="#0A3D91"/><path d="M92 54h34v17h-16v19h14v15h-14v24H92V54Z" fill="#C89B3C"/></svg></div></div>
+          <div class="mockup"><h3>Office signage</h3><div class="mock-sign"><svg width="250" viewBox="0 0 560 180"><path d="M86 22l58 23v38c0 38-23 61-58 77-35-16-58-39-58-77V45l58-23Z" fill="#fff"/><path d="M61 61h49v17H80v13h27v16H80v29H61V61Z" fill="#0A3D91"/><path d="M98 61h34v17h-16v19h14v15h-14v24H98V61Z" fill="#C89B3C"/><text x="174" y="82" class="wordmark" fill="#fff" font-size="42">Essar Finex</text><text x="176" y="116" fill="#B8BDC7" font-size="17" letter-spacing="2">PVT. LTD.</text></svg></div></div>
+        </div>
+      </section>
+
+      <section class="concept">
+        <div class="concept-head">
+          <div class="concept-title">
+            <p class="eyebrow">Concept 4</p>
+            <h2>Architectural / Institutional</h2>
+            <p>
+              A structured emblem inspired by pillars, balance, and institutional permanence.
+              It suits a brand that wants a private-banking and long-term corporate feel.
+            </p>
+          </div>
+          <div class="logo-stage">
+            <svg viewBox="0 0 560 180" role="img" aria-label="Essar Finex architectural logo">
+              <path d="M31 62l55-35 55 35v13H31V62Z" fill="#091A3A"/>
+              <path d="M43 84h18v54H43V84Zm34 0h18v54H77V84Zm34 0h18v54h-18V84Z" fill="#0A3D91"/>
+              <path d="M31 145h110v14H31v-14Z" fill="#C89B3C"/>
+              <text x="176" y="82" class="wordmark" fill="#091A3A" font-size="42">Essar Finex</text>
+              <text x="178" y="116" fill="#667085" font-size="17" letter-spacing="2">PVT. LTD.</text>
+            </svg>
+          </div>
+        </div>
+        <div class="variant-grid">
+          <div class="variant"><svg viewBox="0 0 560 180"><path d="M31 62l55-35 55 35v13H31V62Z" fill="#091A3A"/><path d="M43 84h18v54H43V84Zm34 0h18v54H77V84Zm34 0h18v54h-18V84Z" fill="#0A3D91"/><path d="M31 145h110v14H31v-14Z" fill="#C89B3C"/><text x="176" y="82" class="wordmark" fill="#091A3A" font-size="42">Essar Finex</text><text x="178" y="116" fill="#667085" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Full color</span></div>
+          <div class="variant"><svg class="mono" viewBox="0 0 560 180"><path d="M31 62l55-35 55 35v13H31V62Z"/><path d="M43 84h18v54H43V84Zm34 0h18v54H77V84Zm34 0h18v54h-18V84Z"/><path d="M31 145h110v14H31v-14Z"/><text x="176" y="82" class="wordmark" font-size="42">Essar Finex</text><text x="178" y="116" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Monochrome</span></div>
+          <div class="variant dark"><svg class="dark-logo" viewBox="0 0 560 180"><path d="M31 62l55-35 55 35v13H31V62Z" fill="#fff"/><path d="M43 84h18v54H43V84Zm34 0h18v54H77V84Zm34 0h18v54h-18V84Z" fill="#B8BDC7"/><path d="M31 145h110v14H31v-14Z" fill="#C89B3C"/><text x="176" y="82" class="logo-text wordmark" font-size="42">Essar Finex</text><text x="178" y="116" class="logo-subtext" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Dark background</span></div>
+          <div class="variant icon-only"><svg viewBox="0 0 160 160"><path d="M24 58l56-36 56 36v14H24V58Z" fill="#091A3A"/><path d="M37 82h18v54H37V82Zm34 0h18v54H71V82Zm34 0h18v54h-18V82Z" fill="#0A3D91"/><path d="M24 143h112v13H24v-13Z" fill="#C89B3C"/></svg><span class="variant-label">Icon only</span></div>
+        </div>
+        <div class="details">
+          <div class="detail-card"><h3>Brand rationale</h3><p>Feels established, permanent, and credible. Strong for signage, letterheads, and formal lender communication.</p></div>
+          <div class="detail-card"><h3>Typography</h3><p>Recommended: Optima-style serif alternative, Canela Sans, or a high-grade geometric sans.</p></div>
+          <div class="detail-card"><h3>Color usage</h3><p>Navy should dominate. Royal blue adds modernity, while gold anchors the institutional premium tone.</p></div>
+        </div>
+        <div class="mockups">
+          <div class="mockup"><h3>Website header</h3><div class="mock-header"><svg class="small-logo" viewBox="0 0 560 180"><path d="M31 62l55-35 55 35v13H31V62Z" fill="#091A3A"/><path d="M43 84h18v54H43V84Zm34 0h18v54H77V84Zm34 0h18v54h-18V84Z" fill="#0A3D91"/><path d="M31 145h110v14H31v-14Z" fill="#C89B3C"/><text x="176" y="82" class="wordmark" fill="#091A3A" font-size="42">Essar Finex</text></svg><strong>Apply</strong></div></div>
+          <div class="mockup"><h3>Business card</h3><div class="mock-card"><svg width="170" viewBox="0 0 560 180"><path d="M31 62l55-35 55 35v13H31V62Z" fill="#fff"/><path d="M43 84h18v54H43V84Zm34 0h18v54H77V84Zm34 0h18v54h-18V84Z" fill="#B8BDC7"/><path d="M31 145h110v14H31v-14Z" fill="#C89B3C"/><text x="176" y="82" class="wordmark" fill="#fff" font-size="42">Essar Finex</text></svg><small>Institutional financial services</small></div></div>
+          <div class="mockup"><h3>Mobile app icon</h3><div class="mock-app"><svg width="76" viewBox="0 0 160 160"><path d="M24 58l56-36 56 36v14H24V58Z" fill="#fff"/><path d="M37 82h18v54H37V82Zm34 0h18v54H71V82Zm34 0h18v54h-18V82Z" fill="#B8BDC7"/><path d="M24 143h112v13H24v-13Z" fill="#C89B3C"/></svg></div></div>
+          <div class="mockup"><h3>Office signage</h3><div class="mock-sign"><svg width="250" viewBox="0 0 560 180"><path d="M31 62l55-35 55 35v13H31V62Z" fill="#fff"/><path d="M43 84h18v54H43V84Zm34 0h18v54H77V84Zm34 0h18v54h-18V84Z" fill="#B8BDC7"/><path d="M31 145h110v14H31v-14Z" fill="#C89B3C"/><text x="176" y="82" class="wordmark" fill="#fff" font-size="42">Essar Finex</text><text x="178" y="116" fill="#B8BDC7" font-size="17" letter-spacing="2">PVT. LTD.</text></svg></div></div>
+        </div>
+      </section>
+
+      <section class="concept">
+        <div class="concept-head">
+          <div class="concept-title">
+            <p class="eyebrow">Concept 5</p>
+            <h2>Minimal Wordmark</h2>
+            <p>
+              A typography-led identity with a precise underline device. The result is
+              minimal, confident, easy to scale, and highly suitable for a premium website.
+            </p>
+          </div>
+          <div class="logo-stage">
+            <svg viewBox="0 0 560 180" role="img" aria-label="Essar Finex minimal wordmark logo">
+              <text x="30" y="88" class="wordmark" fill="#091A3A" font-size="58">Essar Finex</text>
+              <path d="M35 112h166c22 0 38-8 50-24l9-12" fill="none" stroke="#0FB97F" stroke-width="8" stroke-linecap="round"/>
+              <path d="M278 112h116" fill="none" stroke="#C89B3C" stroke-width="8" stroke-linecap="round"/>
+              <text x="34" y="142" fill="#667085" font-size="17" letter-spacing="2">PVT. LTD.</text>
+            </svg>
+          </div>
+        </div>
+        <div class="variant-grid">
+          <div class="variant"><svg viewBox="0 0 560 180"><text x="30" y="88" class="wordmark" fill="#091A3A" font-size="58">Essar Finex</text><path d="M35 112h166c22 0 38-8 50-24l9-12" fill="none" stroke="#0FB97F" stroke-width="8" stroke-linecap="round"/><path d="M278 112h116" fill="none" stroke="#C89B3C" stroke-width="8" stroke-linecap="round"/><text x="34" y="142" fill="#667085" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Full color</span></div>
+          <div class="variant"><svg class="mono" viewBox="0 0 560 180"><text x="30" y="88" class="wordmark" font-size="58">Essar Finex</text><path d="M35 112h166c22 0 38-8 50-24l9-12" fill="none" stroke-width="8" stroke-linecap="round"/><path d="M278 112h116" fill="none" stroke-width="8" stroke-linecap="round"/><text x="34" y="142" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Monochrome</span></div>
+          <div class="variant dark"><svg class="dark-logo" viewBox="0 0 560 180"><text x="30" y="88" class="logo-text wordmark" font-size="58">Essar Finex</text><path d="M35 112h166c22 0 38-8 50-24l9-12" fill="none" stroke="#0FB97F" stroke-width="8" stroke-linecap="round"/><path d="M278 112h116" fill="none" stroke="#C89B3C" stroke-width="8" stroke-linecap="round"/><text x="34" y="142" class="logo-subtext" font-size="17" letter-spacing="2">PVT. LTD.</text></svg><span class="variant-label">Dark background</span></div>
+          <div class="variant icon-only"><svg viewBox="0 0 160 160"><rect x="18" y="18" width="124" height="124" rx="34" fill="#091A3A"/><text x="39" y="92" class="wordmark" fill="#fff" font-size="42">EF</text><path d="M43 105h38c15 0 25-5 32-16" fill="none" stroke="#0FB97F" stroke-width="7" stroke-linecap="round"/><path d="M91 105h28" fill="none" stroke="#C89B3C" stroke-width="7" stroke-linecap="round"/></svg><span class="variant-label">Icon only</span></div>
+        </div>
+        <div class="details">
+          <div class="detail-card"><h3>Brand rationale</h3><p>Most minimal and timeless option. Strong if the company wants confidence through restraint rather than emblem complexity.</p></div>
+          <div class="detail-card"><h3>Typography</h3><p>Recommended: custom Satoshi/Manrope-based wordmark with edited terminals and premium spacing.</p></div>
+          <div class="detail-card"><h3>Color usage</h3><p>Navy wordmark is primary. Emerald and gold underline can be removed for formal monochrome applications.</p></div>
+        </div>
+        <div class="mockups">
+          <div class="mockup"><h3>Website header</h3><div class="mock-header"><svg class="small-logo" viewBox="0 0 560 180"><text x="30" y="88" class="wordmark" fill="#091A3A" font-size="58">Essar Finex</text><path d="M35 112h166c22 0 38-8 50-24l9-12" fill="none" stroke="#0FB97F" stroke-width="8" stroke-linecap="round"/><path d="M278 112h116" fill="none" stroke="#C89B3C" stroke-width="8" stroke-linecap="round"/></svg><strong>Apply</strong></div></div>
+          <div class="mockup"><h3>Business card</h3><div class="mock-card"><svg width="210" viewBox="0 0 560 180"><text x="30" y="88" class="wordmark" fill="#fff" font-size="58">Essar Finex</text><path d="M35 112h166c22 0 38-8 50-24l9-12" fill="none" stroke="#0FB97F" stroke-width="8" stroke-linecap="round"/><path d="M278 112h116" fill="none" stroke="#C89B3C" stroke-width="8" stroke-linecap="round"/></svg><small>Premium lending support</small></div></div>
+          <div class="mockup"><h3>Mobile app icon</h3><div class="mock-app"><svg width="76" viewBox="0 0 160 160"><rect x="18" y="18" width="124" height="124" rx="34" fill="#fff"/><text x="39" y="92" class="wordmark" fill="#091A3A" font-size="42">EF</text><path d="M43 105h38c15 0 25-5 32-16" fill="none" stroke="#0FB97F" stroke-width="7" stroke-linecap="round"/><path d="M91 105h28" fill="none" stroke="#C89B3C" stroke-width="7" stroke-linecap="round"/></svg></div></div>
+          <div class="mockup"><h3>Office signage</h3><div class="mock-sign"><svg width="300" viewBox="0 0 560 180"><text x="30" y="88" class="wordmark" fill="#fff" font-size="58">Essar Finex</text><path d="M35 112h166c22 0 38-8 50-24l9-12" fill="none" stroke="#0FB97F" stroke-width="8" stroke-linecap="round"/><path d="M278 112h116" fill="none" stroke="#C89B3C" stroke-width="8" stroke-linecap="round"/><text x="34" y="142" fill="#B8BDC7" font-size="17" letter-spacing="2">PVT. LTD.</text></svg></div></div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
