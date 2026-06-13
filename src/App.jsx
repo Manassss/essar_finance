@@ -417,9 +417,14 @@ const translations = {
   }
 };
 
-function useScrollReveal() {
+function useScrollReveal(refreshKey) {
   useEffect(() => {
     const nodes = document.querySelectorAll('[data-reveal]');
+    if (!('IntersectionObserver' in window)) {
+      nodes.forEach((node) => node.classList.add('is-visible'));
+      return undefined;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -434,7 +439,7 @@ function useScrollReveal() {
 
     nodes.forEach((node) => observer.observe(node));
     return () => observer.disconnect();
-  }, []);
+  }, [refreshKey]);
 }
 
 function useCounter(target, active) {
@@ -466,7 +471,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lang, setLang] = useState('en');
   const t = translations[lang];
-  useScrollReveal();
+  useScrollReveal(`${page}-${lang}`);
 
   useEffect(() => {
     document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
