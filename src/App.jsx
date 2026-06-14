@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 
+const logoSrc = `${import.meta.env.BASE_URL}ess-aar-finex-logo.jpeg`;
+
 const translations = {
   en: {
     langName: 'English',
@@ -511,7 +513,7 @@ function Header({ page, goTo, menuOpen, setMenuOpen, lang, setLang, t }) {
   return (
     <header className="site-header">
       <a className="brand" href="#home" onClick={(event) => { event.preventDefault(); goTo('home'); }}>
-        <span className="brand-mark">EF</span>
+        <img className="brand-mark brand-logo" src={logoSrc} alt="ESS AAR FINEX logo" />
         <span>
           <strong>ESS AAR FINEX</strong>
           <small>PVT LTD</small>
@@ -574,6 +576,13 @@ function Hero({ goTo, t }) {
       <div className="hero-orb orb-one" />
       <div className="hero-orb orb-two" />
       <div className="hero-copy" data-reveal>
+        <div className="hero-brand-seal" aria-label="ESS AAR FINEX brand seal">
+          <img src={logoSrc} alt="" />
+          <span>
+            <strong>ESS AAR FINEX</strong>
+            <small>Trust | Finance | Future</small>
+          </span>
+        </div>
         <p className="eyebrow">{t.hero.eyebrow}</p>
         <h2>{t.hero.title}</h2>
         <p>{t.hero.text}</p>
@@ -996,7 +1005,7 @@ function Footer({ goTo, t }) {
       <div className="container footer-grid">
         <div className="footer-brand">
           <a className="brand" href="#home" onClick={(event) => { event.preventDefault(); goTo('home'); }}>
-            <span className="brand-mark">EF</span>
+            <img className="brand-mark brand-logo" src={logoSrc} alt="ESS AAR FINEX logo" />
             <span>
               <strong>ESS AAR FINEX</strong>
               <small>PVT LTD</small>
